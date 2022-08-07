@@ -1,1 +1,2 @@
 *.yml merge=ours
+.gitattributes merge=ours
