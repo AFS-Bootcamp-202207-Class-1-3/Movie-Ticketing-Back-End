@@ -2,8 +2,8 @@ name: Publish to Heroku
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - master
 
 
 jobs:
