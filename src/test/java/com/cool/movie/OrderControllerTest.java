@@ -23,9 +23,8 @@ public class OrderControllerTest {
     MockMvc mockMvc;
 
     @Test
-    public void should_return_order_info_when_get_order_given_order_id() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/order/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.orderId").value(1));
+    public void should_return_not_found_when_get_order_given_invalid_order_id() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/order/sssssssss"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
