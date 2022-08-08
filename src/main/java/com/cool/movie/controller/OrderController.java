@@ -2,6 +2,7 @@ package com.cool.movie.controller;
 
 
 import com.cool.movie.dto.OrderDetailResponse;
+import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.entity.Movie;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -55,8 +57,8 @@ public class OrderController {
 
 
     @PostMapping
-    public void insert(@RequestBody CustomerOrder customerOrder) {
-
+    public CustomerOrder insert(@RequestBody OrderRequest request) {
+        return orderService.save(request);
     }
 
 
