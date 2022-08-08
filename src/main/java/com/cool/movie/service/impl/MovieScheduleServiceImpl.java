@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.MovieSchedule;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.MovieScheduleRepository;
 import com.cool.movie.service.MovieScheduleService;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
      */
     @Override
     public Optional<MovieSchedule> findById(String id) {
-        return movieScheduleRepository.findById(id);
+        return Optional.ofNullable(movieScheduleRepository.findById(id).orElseThrow(() -> new NotFoundException("MovieSchedule")));
     }
 
     /**
