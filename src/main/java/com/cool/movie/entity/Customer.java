@@ -40,7 +40,6 @@ public class Customer implements Serializable {
 
     private String introduction;
 
-
     public String getId() {
         return id;
     }

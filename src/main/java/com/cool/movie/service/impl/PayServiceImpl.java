@@ -48,8 +48,11 @@ public class PayServiceImpl implements PayService {
      * @param pay
      */
     @Override
-    public Pay save(Pay pay) {
-        return payRepository.save(pay);
+    public Pay update(Pay pay) {
+        Pay updatePay = payRepository.findByOrdersIds(pay.getOrdersIds());
+        updatePay.setStatus(1);
+        updatePay.setTotalPrice(pay.getTotalPrice());
+        return payRepository.save(updatePay);
     }
 
     /**

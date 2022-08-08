@@ -95,4 +95,3 @@ public class CustomerOrder implements Serializable {
         this.userId = userId;
     }
 }
-
