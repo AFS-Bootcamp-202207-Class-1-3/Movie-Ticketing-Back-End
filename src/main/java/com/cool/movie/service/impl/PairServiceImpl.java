@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (Pair)表服务实现类
+ * (Pair)
  *
  * @author makejava
- * @since 2022-08-07 21:44:19
+ * @since 2022-08-07 22:52:57
  */
 @Service("pairService")
 public class PairServiceImpl implements PairService {
@@ -23,19 +23,19 @@ public class PairServiceImpl implements PairService {
     private PairRepository pairRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<Pair> findById() {
-        return pairRepository.findById();
+    public Optional<Pair> findById(String id) {
+        return pairRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param pair 条件参数
+     * @param pair
      */
     @Override
     public List<Pair> findByParam(Pair pair) {
@@ -43,9 +43,9 @@ public class PairServiceImpl implements PairService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param pair 实体类
+     * @param pair
      */
     @Override
     public Pair save(Pair pair) {
@@ -53,9 +53,9 @@ public class PairServiceImpl implements PairService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param pairs 实体类
+     * @param pairs
      */
     @Override
     public List<Pair> save(List<Pair> pairs) {
@@ -64,22 +64,22 @@ public class PairServiceImpl implements PairService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.pairRepository.deleteById();
+    public void deleteById(String id) {
+        this.pairRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.pairRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class PairServiceImpl implements PairService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id
      */
     @Override
-    public boolean existsById() {
-        return pairRepository.existsById();
+    public boolean existsById(String id) {
+        return pairRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<Pair> findAll() {
@@ -105,7 +105,7 @@ public class PairServiceImpl implements PairService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

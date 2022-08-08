@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (MovieSchedule)表服务实现类
+ * (MovieSchedule)
  *
  * @author makejava
- * @since 2022-08-07 21:44:14
+ * @since 2022-08-07 22:52:56
  */
 @Service("movieScheduleService")
 public class MovieScheduleServiceImpl implements MovieScheduleService {
@@ -23,19 +23,19 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
     private MovieScheduleRepository movieScheduleRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<MovieSchedule> findById() {
-        return movieScheduleRepository.findById();
+    public Optional<MovieSchedule> findById(String id) {
+        return movieScheduleRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param movieSchedule 条件参数
+     * @param movieSchedule
      */
     @Override
     public List<MovieSchedule> findByParam(MovieSchedule movieSchedule) {
@@ -43,9 +43,9 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param movieSchedule 实体类
+     * @param movieSchedule
      */
     @Override
     public MovieSchedule save(MovieSchedule movieSchedule) {
@@ -53,9 +53,9 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param movieSchedules 实体类
+     * @param movieSchedules
      */
     @Override
     public List<MovieSchedule> save(List<MovieSchedule> movieSchedules) {
@@ -64,22 +64,22 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.movieScheduleRepository.deleteById();
+    public void deleteById(String id) {
+        this.movieScheduleRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.movieScheduleRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id
      */
     @Override
-    public boolean existsById() {
-        return movieScheduleRepository.existsById();
+    public boolean existsById(String id) {
+        return movieScheduleRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<MovieSchedule> findAll() {
@@ -105,7 +105,7 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

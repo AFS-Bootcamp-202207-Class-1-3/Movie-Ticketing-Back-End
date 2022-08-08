@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (Pay)表服务实现类
+ * (Pay)
  *
  * @author makejava
- * @since 2022-08-07 21:44:20
+ * @since 2022-08-07 22:52:58
  */
 @Service("payService")
 public class PayServiceImpl implements PayService {
@@ -23,19 +23,19 @@ public class PayServiceImpl implements PayService {
     private PayRepository payRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<Pay> findById() {
-        return payRepository.findById();
+    public Optional<Pay> findById(String id) {
+        return payRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param pay 条件参数
+     * @param pay
      */
     @Override
     public List<Pay> findByParam(Pay pay) {
@@ -43,9 +43,9 @@ public class PayServiceImpl implements PayService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param pay 实体类
+     * @param pay
      */
     @Override
     public Pay save(Pay pay) {
@@ -53,9 +53,9 @@ public class PayServiceImpl implements PayService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param pays 实体类
+     * @param pays
      */
     @Override
     public List<Pay> save(List<Pay> pays) {
@@ -64,22 +64,22 @@ public class PayServiceImpl implements PayService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.payRepository.deleteById();
+    public void deleteById(String id) {
+        this.payRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.payRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class PayServiceImpl implements PayService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id Id
      */
     @Override
-    public boolean existsById() {
-        return payRepository.existsById();
+    public boolean existsById(String id) {
+        return payRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<Pay> findAll() {
@@ -105,7 +105,7 @@ public class PayServiceImpl implements PayService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

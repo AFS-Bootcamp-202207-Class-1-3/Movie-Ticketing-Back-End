@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (Cinema)表服务实现类
+ * (Cinema)
  *
  * @author makejava
- * @since 2022-08-07 21:44:10
+ * @since 2022-08-07 22:52:54
  */
 @Service("cinemaService")
 public class CinemaServiceImpl implements CinemaService {
@@ -23,19 +23,19 @@ public class CinemaServiceImpl implements CinemaService {
     private CinemaRepository cinemaRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<Cinema> findById() {
-        return cinemaRepository.findById();
+    public Optional<Cinema> findById(String id) {
+        return cinemaRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param cinema 条件参数
+     * @param cinema
      */
     @Override
     public List<Cinema> findByParam(Cinema cinema) {
@@ -43,9 +43,9 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param cinema 实体类
+     * @param cinema
      */
     @Override
     public Cinema save(Cinema cinema) {
@@ -53,9 +53,9 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param cinemas 实体类
+     * @param cinemas
      */
     @Override
     public List<Cinema> save(List<Cinema> cinemas) {
@@ -64,22 +64,22 @@ public class CinemaServiceImpl implements CinemaService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.cinemaRepository.deleteById();
+    public void deleteById(String id) {
+        this.cinemaRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.cinemaRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class CinemaServiceImpl implements CinemaService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id
      */
     @Override
-    public boolean existsById() {
-        return cinemaRepository.existsById();
+    public boolean existsById(String id) {
+        return cinemaRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<Cinema> findAll() {
@@ -105,7 +105,7 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

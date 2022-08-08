@@ -6,71 +6,66 @@ import com.cool.movie.entity.Pay;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (Pay)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:20
- */
+
 public interface PayService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
-    Optional<Pay> findById();
+    Optional<Pay> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param pay 条件参数
+     * @param pay
      */
     List<Pay> findByParam(Pay pay);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param pay 实体类
+     * @param pay
      */
     Pay save(Pay pay);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param pays 实体类
+     * @param pays
      */
     List<Pay> save(List<Pay> pays);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param id
      */
-    void deleteById();
+    void deleteById(String id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param id
      */
-    boolean existsById();
+    boolean existsById(String id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<Pay> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }

@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (Order)表服务实现类
+ * (Order)
  *
  * @author makejava
- * @since 2022-08-07 21:44:17
+ * @since 2022-08-07 22:52:56
  */
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
@@ -23,19 +23,19 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<Order> findById() {
-        return orderRepository.findById();
+    public Optional<Order> findById(String id) {
+        return orderRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param order 条件参数
+     * @param order
      */
     @Override
     public List<Order> findByParam(Order order) {
@@ -43,9 +43,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param order 实体类
+     * @param order
      */
     @Override
     public Order save(Order order) {
@@ -53,9 +53,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param orders 实体类
+     * @param orders
      */
     @Override
     public List<Order> save(List<Order> orders) {
@@ -64,22 +64,22 @@ public class OrderServiceImpl implements OrderService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.orderRepository.deleteById();
+    public void deleteById(String id) {
+        this.orderRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.orderRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class OrderServiceImpl implements OrderService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id Id
      */
     @Override
-    public boolean existsById() {
-        return orderRepository.existsById();
+    public boolean existsById(String id) {
+        return orderRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<Order> findAll() {
@@ -105,7 +105,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

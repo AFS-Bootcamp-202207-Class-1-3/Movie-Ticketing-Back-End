@@ -6,71 +6,65 @@ import com.cool.movie.entity.Cinema;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (Cinema)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:09
- */
 public interface CinemaService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param
      */
-    Optional<Cinema> findById();
+    Optional<Cinema> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param cinema 条件参数
+     * @param cinema
      */
     List<Cinema> findByParam(Cinema cinema);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param cinema 实体类
+     * @param cinema
      */
     Cinema save(Cinema cinema);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param cinemas 实体类
+     * @param cinemas
      */
     List<Cinema> save(List<Cinema> cinemas);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param
      */
-    void deleteById();
+    void deleteById(String Id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param Id
      */
-    boolean existsById();
+    boolean existsById(String Id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<Cinema> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }

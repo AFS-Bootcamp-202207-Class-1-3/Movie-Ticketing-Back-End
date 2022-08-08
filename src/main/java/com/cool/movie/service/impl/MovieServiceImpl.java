@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (Movie)表服务实现类
+ * (Movie)
  *
  * @author makejava
- * @since 2022-08-07 21:44:13
+ * @since 2022-08-07 22:52:55
  */
 @Service("movieService")
 public class MovieServiceImpl implements MovieService {
@@ -23,19 +23,19 @@ public class MovieServiceImpl implements MovieService {
     private MovieRepository movieRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<Movie> findById() {
-        return movieRepository.findById();
+    public Optional<Movie> findById(String id) {
+        return movieRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param movie 条件参数
+     * @param movie
      */
     @Override
     public List<Movie> findByParam(Movie movie) {
@@ -43,9 +43,9 @@ public class MovieServiceImpl implements MovieService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param movie 实体类
+     * @param movie
      */
     @Override
     public Movie save(Movie movie) {
@@ -53,9 +53,9 @@ public class MovieServiceImpl implements MovieService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param movies 实体类
+     * @param movies
      */
     @Override
     public List<Movie> save(List<Movie> movies) {
@@ -64,22 +64,22 @@ public class MovieServiceImpl implements MovieService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.movieRepository.deleteById();
+    public void deleteById(String id) {
+        this.movieRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.movieRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class MovieServiceImpl implements MovieService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id Id
      */
     @Override
-    public boolean existsById() {
-        return movieRepository.existsById();
+    public boolean existsById(String id) {
+        return movieRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<Movie> findAll() {
@@ -105,7 +105,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

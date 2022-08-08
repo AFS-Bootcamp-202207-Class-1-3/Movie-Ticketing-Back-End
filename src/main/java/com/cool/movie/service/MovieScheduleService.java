@@ -6,71 +6,66 @@ import com.cool.movie.entity.MovieSchedule;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (MovieSchedule)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:14
- */
+
 public interface MovieScheduleService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param
      */
-    Optional<MovieSchedule> findById();
+    Optional<MovieSchedule> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param movieSchedule 条件参数
+     * @param movieSchedule
      */
     List<MovieSchedule> findByParam(MovieSchedule movieSchedule);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param movieSchedule 实体类
+     * @param movieSchedule
      */
     MovieSchedule save(MovieSchedule movieSchedule);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param movieSchedules 实体类
+     * @param movieSchedules
      */
     List<MovieSchedule> save(List<MovieSchedule> movieSchedules);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param
      */
-    void deleteById();
+    void deleteById(String id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param id
      */
-    boolean existsById();
+    boolean existsById(String id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<MovieSchedule> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }

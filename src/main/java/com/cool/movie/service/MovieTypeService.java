@@ -6,71 +6,65 @@ import com.cool.movie.entity.MovieType;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (MovieType)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:15
- */
 public interface MovieTypeService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param
      */
-    Optional<MovieType> findById();
+    Optional<MovieType> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param movieType 条件参数
+     * @param movieType
      */
     List<MovieType> findByParam(MovieType movieType);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param movieType 实体类
+     * @param movieType
      */
     MovieType save(MovieType movieType);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param movieTypes 实体类
+     * @param movieTypes
      */
     List<MovieType> save(List<MovieType> movieTypes);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param
      */
-    void deleteById();
+    void deleteById(String id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param id
      */
-    boolean existsById();
+    boolean existsById(String id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<MovieType> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }

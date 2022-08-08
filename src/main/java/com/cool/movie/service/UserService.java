@@ -6,71 +6,66 @@ import com.cool.movie.entity.User;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (User)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:22
- */
+
 public interface UserService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param
      */
-    Optional<User> findById();
+    Optional<User> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param user 条件参数
+     * @param user
      */
     List<User> findByParam(User user);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param user 实体类
+     * @param user
      */
     User save(User user);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param users 实体类
+     * @param users
      */
     List<User> save(List<User> users);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param
      */
-    void deleteById();
+    void deleteById(String id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param id
      */
-    boolean existsById();
+    boolean existsById(String id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<User> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }

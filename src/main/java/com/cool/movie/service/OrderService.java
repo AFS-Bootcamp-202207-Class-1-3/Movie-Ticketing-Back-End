@@ -6,71 +6,65 @@ import com.cool.movie.entity.Order;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (Order)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:17
- */
 public interface OrderService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param
      */
-    Optional<Order> findById();
+    Optional<Order> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param order 条件参数
+     * @param order
      */
     List<Order> findByParam(Order order);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param order 实体类
+     * @param order
      */
     Order save(Order order);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param orders 实体类
+     * @param orders
      */
     List<Order> save(List<Order> orders);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param
      */
-    void deleteById();
+    void deleteById(String id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param id
      */
-    boolean existsById();
+    boolean existsById(String id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<Order> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }

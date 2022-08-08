@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * (MovieType)表服务实现类
+ * (MovieType)
  *
  * @author makejava
- * @since 2022-08-07 21:44:16
+ * @since 2022-08-07 22:52:56
  */
 @Service("movieTypeService")
 public class MovieTypeServiceImpl implements MovieTypeService {
@@ -23,19 +23,19 @@ public class MovieTypeServiceImpl implements MovieTypeService {
     private MovieTypeRepository movieTypeRepository;
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param id
      */
     @Override
-    public Optional<MovieType> findById() {
-        return movieTypeRepository.findById();
+    public Optional<MovieType> findById(String id) {
+        return movieTypeRepository.findById(id);
     }
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param movieType 条件参数
+     * @param movieType
      */
     @Override
     public List<MovieType> findByParam(MovieType movieType) {
@@ -43,9 +43,9 @@ public class MovieTypeServiceImpl implements MovieTypeService {
     }
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param movieType 实体类
+     * @param movieType
      */
     @Override
     public MovieType save(MovieType movieType) {
@@ -53,9 +53,9 @@ public class MovieTypeServiceImpl implements MovieTypeService {
     }
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param movieTypes 实体类
+     * @param movieTypes
      */
     @Override
     public List<MovieType> save(List<MovieType> movieTypes) {
@@ -64,22 +64,22 @@ public class MovieTypeServiceImpl implements MovieTypeService {
 
 
     /**
-     * 通过主键删除数据
+     * deleteById
      *
-     * @param 主键
+     * @param
      */
     @Override
-    public void deleteById() {
-        this.movieTypeRepository.deleteById();
+    public void deleteById(String id) {
+        this.movieTypeRepository.deleteById(id);
     }
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
     @Override
-    public void deleteByIds(List<> ids) {
+    public void deleteByIds(List<String> ids) {
         ids.forEach(id -> {
             this.movieTypeRepository.deleteById(id);
         });
@@ -87,17 +87,17 @@ public class MovieTypeServiceImpl implements MovieTypeService {
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param id 主键Id
+     * @param id Id
      */
     @Override
-    public boolean existsById() {
-        return movieTypeRepository.existsById();
+    public boolean existsById(String id) {
+        return movieTypeRepository.existsById(id);
     }
 
     /**
-     * 查询所有数据
+     * findAll
      */
     @Override
     public Iterable<MovieType> findAll() {
@@ -105,7 +105,7 @@ public class MovieTypeServiceImpl implements MovieTypeService {
     }
 
     /**
-     * 统计个数
+     * count
      */
     @Override
     public long count() {

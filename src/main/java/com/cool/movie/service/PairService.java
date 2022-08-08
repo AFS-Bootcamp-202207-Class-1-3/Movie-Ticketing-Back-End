@@ -6,71 +6,66 @@ import com.cool.movie.entity.Pair;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * (Pair)表服务接口
- *
- * @author makejava
- * @since 2022-08-07 21:44:18
- */
+
 public interface PairService {
 
     /**
-     * 根据主键查询一条数据
+     * findById
      *
-     * @param 主键id
+     * @param
      */
-    Optional<Pair> findById();
+    Optional<Pair> findById(String id);
 
     /**
-     * 根据参数查询多条数据
+     * findByParam
      *
-     * @param pair 条件参数
+     * @param pair
      */
     List<Pair> findByParam(Pair pair);
 
     /**
-     * 保存一条数据
+     * save one
      *
-     * @param pair 实体类
+     * @param pair
      */
     Pair save(Pair pair);
 
     /**
-     * 保存多条数据
+     * save
      *
-     * @param pairs 实体类
+     * @param pairs
      */
     List<Pair> save(List<Pair> pairs);
 
     /**
-     * 删除一条数据
+     * deleteById
      *
-     * @param 主键id
+     * @param
      */
-    void deleteById();
+    void deleteById(String id);
 
     /**
-     * 删除多条数据
+     * deleteByIds
      *
-     * @param ids 多条主键
+     * @param ids
      */
-    void deleteByIds(List<> ids);
+    void deleteByIds(List<String> ids);
 
 
     /**
-     * 根据id查询数据是否存在
+     * existsById
      *
-     * @param 主键Id
+     * @param id
      */
-    boolean existsById();
+    boolean existsById(String id);
 
     /**
-     * 查询所有数据
+     * findAll
      */
     Iterable<Pair> findAll();
 
     /**
-     * 统计个数
+     * count
      */
     long count();
 }
