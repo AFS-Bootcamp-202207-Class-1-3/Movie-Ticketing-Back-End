@@ -28,7 +28,7 @@ public interface PayService {
      *
      * @param pay
      */
-    Pay save(Pay pay);
+    Pay update(Pay pay);
 
     /**
      * save
