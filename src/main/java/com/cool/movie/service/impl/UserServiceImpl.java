@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.Customer;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.UserRepository;
 import com.cool.movie.service.UserService;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Optional<Customer> findById(String id) {
-        return userRepository.findById(id);
+        return Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> new NotFoundException("Customer")));
     }
 
     /**
