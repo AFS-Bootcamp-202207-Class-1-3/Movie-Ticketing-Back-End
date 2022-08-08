@@ -27,3 +27,5 @@
 docs/gradle-getting-started
 docs/tmp
 .vscode/
+*.yml
+
