@@ -1,0 +1,10 @@
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(1,'movie-1','introduction-1',120,'2022-08-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','科幻');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(2,'movie-2','introduction-2',120,'2022-02-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','喜剧');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(3,'movie-3','introduction-3',120,'2022-08-09','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','科幻');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(4,'movie-4','introduction-4',120,'2022-03-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','科幻');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(5,'movie-5','introduction-5',120,'2022-11-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','科幻');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(6,'movie-6','introduction-6',120,'2022-08-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','冒险');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(7,'movie-7','introduction-7',120,'2022-10-05','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','爱情');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(8,'movie-8','introduction-8',120,'2022-05-30','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','科幻');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(9,'movie-9','introduction-9',120,'2022-08-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','动作');
+INSERT INTO movie(id, name,introduction,duration,release_time,post_url,types) VALUES(10,'movie-10','introduction-10',120,'2022-08-08','https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg','科幻');

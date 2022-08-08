@@ -1,0 +1,10 @@
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(1,1,1,500,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(2,2,2,2030,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(3,3,3,400,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(4,4,4,500,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(5,5,5,600,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(6,6,6,700,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(7,7,7,800,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(8,8,8,900,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(9,9,9,500,true,123456,1,true);
+INSERT INTO customer_order(id, movie_id,movie_schedule_id,price,is_pay,ticket_code,user_id,has_used) VALUES(10,10,10,6600,true,12345,1,true);
