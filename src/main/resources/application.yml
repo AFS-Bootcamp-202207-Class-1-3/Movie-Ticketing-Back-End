@@ -4,7 +4,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/testdb
+    url: jdbc:postgresql://localhost:5432/movie
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
