@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.Pair;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.PairRepository;
 import com.cool.movie.service.PairService;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class PairServiceImpl implements PairService {
 
     @Override
     public Pair findByUserId(String userId) {
-        return pairRepository.findByUserId(userId);
+        return Optional.ofNullable(pairRepository.findByUserId(userId)).orElseThrow(() -> new NotFoundException(Pair.class.getSimpleName()));
     }
 
     /**
