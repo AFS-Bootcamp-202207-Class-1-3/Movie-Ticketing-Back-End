@@ -25,5 +25,37 @@ public class Pair implements Serializable {
 
     private String movieScheduleId;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(String partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public String getMovieScheduleId() {
+        return movieScheduleId;
+    }
+
+    public void setMovieScheduleId(String movieScheduleId) {
+        this.movieScheduleId = movieScheduleId;
+    }
 }
 

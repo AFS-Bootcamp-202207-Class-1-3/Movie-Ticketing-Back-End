@@ -22,6 +22,11 @@ public class PairServiceImpl implements PairService {
     @Resource
     private PairRepository pairRepository;
 
+    @Override
+    public Pair findByUserId(String userId) {
+        return pairRepository.findByUserId(userId);
+    }
+
     /**
      * findById
      *
