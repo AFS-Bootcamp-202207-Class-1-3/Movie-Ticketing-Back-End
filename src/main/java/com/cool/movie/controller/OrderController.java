@@ -45,12 +45,12 @@ public class OrderController {
 
     @GetMapping("{id}")
     public OrderDetailResponse selectOne(@PathVariable Serializable id) {
-        CustomerOrder customerOrder=orderService.findById(String.valueOf(id)).get();
-        Customer customer=userService.findById(customerOrder.getUserId()).get();
-        Movie movie=movieService.findById(customerOrder.getMovieId()).get();
-        MovieSchedule movieSchedule=movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
-        OrderDetailMapper orderDetailMapper=new OrderDetailMapper();
-        return orderDetailMapper.toResponse(customerOrder,customer,movie,movieSchedule);
+        CustomerOrder customerOrder = orderService.findById(String.valueOf(id)).get();
+        Customer customer = userService.findById(customerOrder.getUserId()).get();
+        Movie movie = movieService.findById(customerOrder.getMovieId());
+        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
+        OrderDetailMapper orderDetailMapper = new OrderDetailMapper();
+        return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
     }
 
 

@@ -25,8 +25,8 @@ public class MovieController {
 
 
     @GetMapping("{id}")
-    public void selectOne(@PathVariable Serializable id) {
-
+    public Movie selectOne(@PathVariable String id) {
+        return movieService.findById(id);
     }
 
 

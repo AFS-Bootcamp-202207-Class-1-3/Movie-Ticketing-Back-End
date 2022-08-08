@@ -14,7 +14,7 @@ public interface MovieService {
      *
      * @param
      */
-    Optional<Movie> findById(String id);
+     Movie findById(String id);
 
     /**
      * findByParam
