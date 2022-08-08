@@ -7,8 +7,8 @@ import com.cool.movie.entity.Movie;
 import com.cool.movie.entity.MovieSchedule;
 
 public class OrderDetailMapper {
-    public OrderDetailResponse toResponse(CustomerOrder customerOrder, Customer customer, Movie movie, MovieSchedule movieSchedule){
-        OrderDetailResponse orderDetailResponse=new OrderDetailResponse();
+    public OrderDetailResponse toResponse(CustomerOrder customerOrder, Customer customer, Movie movie, MovieSchedule movieSchedule) {
+        OrderDetailResponse orderDetailResponse = new OrderDetailResponse();
         orderDetailResponse.setOrderId(customerOrder.getId());
         orderDetailResponse.setMovieName(movie.getName());
         orderDetailResponse.setPrice(customerOrder.getPrice());
