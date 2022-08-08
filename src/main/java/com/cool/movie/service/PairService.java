@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public interface PairService {
 
+
+    Pair findByUserId(String userId);
+
     /**
      * findById
      *

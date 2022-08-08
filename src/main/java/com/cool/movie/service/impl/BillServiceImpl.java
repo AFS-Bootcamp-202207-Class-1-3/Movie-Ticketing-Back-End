@@ -1,11 +1,10 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.dto.BillResponse;
-import com.cool.movie.entity.CustomerOrder;
-import com.cool.movie.repository.MovieRepository;
-import com.cool.movie.repository.OrderRepository;
-import com.cool.movie.repository.UserRepository;
-import com.cool.movie.service.BillService;
+import com.cool.movie.entity.*;
+import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.BillMapper;
+import com.cool.movie.service.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,18 +13,35 @@ import javax.annotation.Resource;
 public class BillServiceImpl implements BillService {
 
     @Resource
-    OrderRepository orderRepository;
+    OrderService orderService;
 
     @Resource
-    MovieRepository movieRepository;
+    MovieScheduleService movieScheduleService;
 
 
     @Resource
-    UserRepository userRepository;
+    MovieService movieService;
+
+    @Resource
+    PairService pairService;
+
+    @Resource
+    UserService userService;
+
+    @Resource
+    BillMapper billMapper;
+
+    @Resource
+    CinemaService cinemaService;
 
     @Override
     public BillResponse getBill(String orderId) {
-//        CustomerOrder customerOrder = orderRepository.findById(orderId).orElseThrow();
-        return null;
+        CustomerOrder customerOrder = orderService.findById(orderId).get();
+        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
+        Cinema cinema = cinemaService.findById(movieSchedule.getCinemaId()).get();
+        Movie movie = movieService.findById(customerOrder.getMovieId()).get();
+        Pair pair = pairService.findByUserId(customerOrder.getUserId());
+        Customer pairCustomer = userService.findById(pair.getId()).get();
+        return billMapper.toResponse(customerOrder, movieSchedule, cinema, movie, pairCustomer);
     }
 }

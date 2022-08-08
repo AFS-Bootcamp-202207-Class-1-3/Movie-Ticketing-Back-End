@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.OrderService;
 import org.springframework.stereotype.Service;

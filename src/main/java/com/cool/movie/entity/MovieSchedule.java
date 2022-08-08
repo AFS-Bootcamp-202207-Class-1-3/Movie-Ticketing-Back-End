@@ -37,5 +37,28 @@ public class MovieSchedule implements Serializable {
 
     private String room;
 
+    public String getCinemaId() {
+        return cinemaId;
+    }
+
+    public void setCinemaId(String cinemaId) {
+        this.cinemaId = cinemaId;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 }
 
