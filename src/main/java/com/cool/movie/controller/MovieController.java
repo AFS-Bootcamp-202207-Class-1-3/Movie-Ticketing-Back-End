@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("movie")
 public class MovieController {
