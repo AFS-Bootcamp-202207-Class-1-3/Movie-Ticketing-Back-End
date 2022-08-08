@@ -11,8 +11,6 @@ import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.service.UserService;
 import mapper.OrderDetailMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -45,12 +43,12 @@ public class OrderController {
 
     @GetMapping("{id}")
     public OrderDetailResponse selectOne(@PathVariable Serializable id) {
-        CustomerOrder customerOrder=orderService.findById(String.valueOf(id)).get();
-        Customer customer=userService.findById(customerOrder.getUserId()).get();
-        Movie movie=movieService.findById(customerOrder.getMovieId()).get();
-        MovieSchedule movieSchedule=movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
-        OrderDetailMapper orderDetailMapper=new OrderDetailMapper();
-        return orderDetailMapper.toResponse(customerOrder,customer,movie,movieSchedule);
+        CustomerOrder customerOrder = orderService.findById(String.valueOf(id)).get();
+        Customer customer = userService.findById(customerOrder.getUserId()).get();
+        Movie movie = movieService.findById(customerOrder.getMovieId()).get();
+        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
+        OrderDetailMapper orderDetailMapper = new OrderDetailMapper();
+        return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
     }
 
 
