@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.Cinema;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.CinemaRepository;
 import com.cool.movie.service.CinemaService;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class CinemaServiceImpl implements CinemaService {
      */
     @Override
     public Optional<Cinema> findById(String id) {
-        return cinemaRepository.findById(id);
+        return Optional.ofNullable(cinemaRepository.findById(id)).orElseThrow(() -> new NotFoundException(Cinema.class.getSimpleName()));
     }
 
     /**

@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Optional<Customer> findById(String id) {
-        return Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> new NotFoundException("Customer")));
+        return Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> new NotFoundException(Customer.class.getSimpleName())));
     }
 
     /**
