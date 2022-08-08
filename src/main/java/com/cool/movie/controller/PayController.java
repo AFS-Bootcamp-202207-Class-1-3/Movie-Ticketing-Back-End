@@ -37,8 +37,8 @@ public class PayController {
 
 
     @PutMapping
-    public void update(@RequestBody Pay pay) {
-
+    public Pay update(@RequestBody Pay pay) {
+        return payService.update(pay);
     }
 
 

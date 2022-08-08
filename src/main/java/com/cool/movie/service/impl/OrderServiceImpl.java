@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Optional<CustomerOrder> findById(String id) {
-        return orderRepository.findById(id);
+        return Optional.ofNullable(orderRepository.findById(id).orElseThrow(() -> new NotFoundException("CustomerOrder")));
     }
 
     /**
