@@ -2,6 +2,7 @@ package com.cool.movie.controller;
 
 
 import com.cool.movie.dto.OrderDetailResponse;
+import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.entity.Movie;
@@ -11,11 +12,14 @@ import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.service.UserService;
 import mapper.OrderDetailMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -45,7 +49,7 @@ public class OrderController {
     public OrderDetailResponse selectOne(@PathVariable Serializable id) {
         CustomerOrder customerOrder = orderService.findById(String.valueOf(id)).get();
         Customer customer = userService.findById(customerOrder.getUserId()).get();
-        Movie movie = movieService.findById(customerOrder.getMovieId()).get();
+        Movie movie = movieService.findById(customerOrder.getMovieId());
         MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
         OrderDetailMapper orderDetailMapper = new OrderDetailMapper();
         return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
@@ -53,8 +57,8 @@ public class OrderController {
 
 
     @PostMapping
-    public void insert(@RequestBody CustomerOrder customerOrder) {
-
+    public CustomerOrder insert(@RequestBody OrderRequest request) {
+        return orderService.save(request);
     }
 
 

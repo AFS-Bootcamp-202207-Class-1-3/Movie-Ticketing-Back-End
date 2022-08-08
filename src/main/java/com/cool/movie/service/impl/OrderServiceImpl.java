@@ -1,5 +1,7 @@
 package com.cool.movie.service.impl;
 
+import com.cool.movie.advice.GlobalExceptionAdvice;
+import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.OrderRepository;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * (Order)
@@ -46,11 +50,14 @@ public class OrderServiceImpl implements OrderService {
     /**
      * save one
      *
-     * @param customerOrder
+     * @param request
      */
     @Override
-    public CustomerOrder save(CustomerOrder customerOrder) {
-        return orderRepository.save(customerOrder);
+    public CustomerOrder save(OrderRequest request) {
+        CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
+                Math.random() * 100, false, request.getMovieScheduleId(), false,
+                generateRandomTicketCode(15), request.getUserId());
+        return orderRepository.save(order);
     }
 
     /**
@@ -111,6 +118,17 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public long count() {
         return orderRepository.count();
+    }
+
+    private String generateRandomTicketCode(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder ticketCodeStringBuffer = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
+            ticketCodeStringBuffer.append(str.charAt(number));
+        }
+        return ticketCodeStringBuffer.toString();
     }
 }
 
