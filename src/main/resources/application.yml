@@ -3,15 +3,12 @@ server:
   port: ${PORT:8080}
 
 spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/testdb
-#    hikari:
-#      connection-timeout: 30000
-#      maximum-pool-size: 10
   datasource:
-    url: jdbc:mysql://localhost:3306/movie?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: 123456
-#  flyway:
-#    baseline-on-migrate: true
+    url: jdbc:postgresql://localhost:5432/testdb
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+
+  flyway:
+    baseline-on-migrate: true
 
