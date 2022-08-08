@@ -1,7 +1,7 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.entity.Order;
+import com.cool.movie.entity.CustomerOrder;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,28 +13,28 @@ public interface OrderService {
      *
      * @param
      */
-    Optional<Order> findById(String id);
+    Optional<CustomerOrder> findById(String id);
 
     /**
      * findByParam
      *
-     * @param order
+     * @param customerOrder
      */
-    List<Order> findByParam(Order order);
+    List<CustomerOrder> findByParam(CustomerOrder customerOrder);
 
     /**
      * save one
      *
-     * @param order
+     * @param customerOrder
      */
-    Order save(Order order);
+    CustomerOrder save(CustomerOrder customerOrder);
 
     /**
      * save
      *
-     * @param orders
+     * @param customerOrders
      */
-    List<Order> save(List<Order> orders);
+    List<CustomerOrder> save(List<CustomerOrder> customerOrders);
 
     /**
      * deleteById
@@ -61,7 +61,7 @@ public interface OrderService {
     /**
      * findAll
      */
-    Iterable<Order> findAll();
+    Iterable<CustomerOrder> findAll();
 
     /**
      * count

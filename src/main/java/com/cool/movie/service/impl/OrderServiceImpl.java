@@ -1,6 +1,6 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.entity.Order;
+import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -28,37 +28,37 @@ public class OrderServiceImpl implements OrderService {
      * @param id
      */
     @Override
-    public Optional<Order> findById(String id) {
+    public Optional<CustomerOrder> findById(String id) {
         return orderRepository.findById(id);
     }
 
     /**
      * findByParam
      *
-     * @param order
+     * @param customerOrder
      */
     @Override
-    public List<Order> findByParam(Order order) {
+    public List<CustomerOrder> findByParam(CustomerOrder customerOrder) {
         return null;
     }
 
     /**
      * save one
      *
-     * @param order
+     * @param customerOrder
      */
     @Override
-    public Order save(Order order) {
-        return orderRepository.save(order);
+    public CustomerOrder save(CustomerOrder customerOrder) {
+        return orderRepository.save(customerOrder);
     }
 
     /**
      * save
      *
-     * @param orders
+     * @param customerOrders
      */
     @Override
-    public List<Order> save(List<Order> orders) {
+    public List<CustomerOrder> save(List<CustomerOrder> customerOrders) {
         return null;
     }
 
@@ -100,7 +100,7 @@ public class OrderServiceImpl implements OrderService {
      * findAll
      */
     @Override
-    public Iterable<Order> findAll() {
+    public Iterable<CustomerOrder> findAll() {
         return orderRepository.findAll();
     }
 

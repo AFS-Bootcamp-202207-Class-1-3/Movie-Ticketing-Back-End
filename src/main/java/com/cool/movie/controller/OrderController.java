@@ -1,7 +1,7 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.entity.Order;
+import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class OrderController {
 
 
     @GetMapping
-    public void selectAll(Order order) {
+    public void selectAll(CustomerOrder customerOrder) {
 
     }
 
@@ -31,13 +31,13 @@ public class OrderController {
 
 
     @PostMapping
-    public void insert(@RequestBody Order order) {
+    public void insert(@RequestBody CustomerOrder customerOrder) {
 
     }
 
 
     @PutMapping
-    public void update(@RequestBody Order order) {
+    public void update(@RequestBody CustomerOrder customerOrder) {
 
     }
 

@@ -1,6 +1,6 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.entity.User;
+import com.cool.movie.entity.Customer;
 import com.cool.movie.repository.UserRepository;
 import com.cool.movie.service.UserService;
 import org.springframework.stereotype.Service;
@@ -23,37 +23,37 @@ public class UserServiceImpl implements UserService {
      * @param id
      */
     @Override
-    public Optional<User> findById(String id) {
+    public Optional<Customer> findById(String id) {
         return userRepository.findById(id);
     }
 
     /**
      * findByParam
      *
-     * @param user
+     * @param customer
      */
     @Override
-    public List<User> findByParam(User user) {
+    public List<Customer> findByParam(Customer customer) {
         return null;
     }
 
     /**
      * save one
      *
-     * @param user
+     * @param customer
      */
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
+    public Customer save(Customer customer) {
+        return userRepository.save(customer);
     }
 
     /**
      * save
      *
-     * @param users
+     * @param customers
      */
     @Override
-    public List<User> save(List<User> users) {
+    public List<Customer> save(List<Customer> customers) {
         return null;
     }
 
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
      * findAll
      */
     @Override
-    public Iterable<User> findAll() {
+    public Iterable<Customer> findAll() {
         return userRepository.findAll();
     }
 

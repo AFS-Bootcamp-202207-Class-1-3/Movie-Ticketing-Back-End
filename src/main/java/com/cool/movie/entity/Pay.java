@@ -6,9 +6,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 
-/**
- * 暂时用不到
- */
+
 @Entity
 public class Pay implements Serializable {
 

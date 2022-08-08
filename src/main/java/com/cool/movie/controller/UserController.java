@@ -1,7 +1,7 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.entity.User;
+import com.cool.movie.entity.Customer;
 import com.cool.movie.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class UserController {
 
 
     @GetMapping
-    public void selectAll(User user) {
+    public void selectAll(Customer customer) {
 
     }
 
@@ -31,13 +31,13 @@ public class UserController {
 
 
     @PostMapping
-    public void insert(@RequestBody User user) {
+    public void insert(@RequestBody Customer customer) {
 
     }
 
 
     @PutMapping
-    public void update(@RequestBody User user) {
+    public void update(@RequestBody Customer customer) {
 
     }
 

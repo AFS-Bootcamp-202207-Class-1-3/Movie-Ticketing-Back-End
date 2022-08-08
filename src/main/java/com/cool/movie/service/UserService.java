@@ -1,7 +1,7 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.entity.User;
+import com.cool.movie.entity.Customer;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,28 +14,28 @@ public interface UserService {
      *
      * @param
      */
-    Optional<User> findById(String id);
+    Optional<Customer> findById(String id);
 
     /**
      * findByParam
      *
-     * @param user
+     * @param customer
      */
-    List<User> findByParam(User user);
+    List<Customer> findByParam(Customer customer);
 
     /**
      * save one
      *
-     * @param user
+     * @param customer
      */
-    User save(User user);
+    Customer save(Customer customer);
 
     /**
      * save
      *
-     * @param users
+     * @param customers
      */
-    List<User> save(List<User> users);
+    List<Customer> save(List<Customer> customers);
 
     /**
      * deleteById
@@ -62,7 +62,7 @@ public interface UserService {
     /**
      * findAll
      */
-    Iterable<User> findAll();
+    Iterable<Customer> findAll();
 
     /**
      * count

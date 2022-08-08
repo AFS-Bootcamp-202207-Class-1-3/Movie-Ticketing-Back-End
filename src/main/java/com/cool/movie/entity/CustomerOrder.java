@@ -8,12 +8,9 @@ import java.io.Serializable;
 
 
 @Entity
-public class Order implements Serializable {
+public class CustomerOrder implements Serializable {
 
     private static final long serialVersionUID = 177810964698268933L;
-
-
-
     @Id
     private String id;
 
