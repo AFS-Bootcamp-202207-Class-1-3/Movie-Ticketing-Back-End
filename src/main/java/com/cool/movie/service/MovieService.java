@@ -16,7 +16,7 @@ public interface MovieService {
      */
      Movie findById(String id);
 
-     MoviePage findByPage();
+     MoviePage findByPage(Integer pageSize, Integer pageNumber);
 
     /**
      * findByParam

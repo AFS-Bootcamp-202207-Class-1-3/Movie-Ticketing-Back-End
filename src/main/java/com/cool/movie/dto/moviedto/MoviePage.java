@@ -11,14 +11,19 @@ public class MoviePage {
     private Integer pageSize;
     private Integer pageNumber;
     private Integer totalPages;
-    private Integer currentPage;
+
+    private Integer totalMovies;
+
+    private Integer moviesCount;
+
     private List<MovieResponse> movieResponses;
 
-    public MoviePage(Integer pageSize, Integer pageNumber, Integer totalPages, Integer currentPage, List<MovieResponse> movieResponses) {
+    public MoviePage(Integer pageSize, Integer pageNumber, Integer totalPages, Integer totalMovies, Integer moviesCount, List<MovieResponse> movieResponses) {
         this.pageSize = pageSize;
         this.pageNumber = pageNumber;
         this.totalPages = totalPages;
-        this.currentPage = currentPage;
+        this.totalMovies = totalMovies;
+        this.moviesCount = moviesCount;
         this.movieResponses = movieResponses;
     }
 
@@ -49,12 +54,20 @@ public class MoviePage {
         this.totalPages = totalPages;
     }
 
-    public Integer getCurrentPage() {
-        return currentPage;
+    public Integer getTotalMovies() {
+        return totalMovies;
     }
 
-    public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
+    public void setTotalMovies(Integer totalMovies) {
+        this.totalMovies = totalMovies;
+    }
+
+    public Integer getMoviesCount() {
+        return moviesCount;
+    }
+
+    public void setMoviesCount(Integer moviesCount) {
+        this.moviesCount = moviesCount;
     }
 
     public List<MovieResponse> getMovieResponses() {

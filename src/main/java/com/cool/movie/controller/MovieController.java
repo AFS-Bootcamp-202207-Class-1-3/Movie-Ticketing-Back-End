@@ -1,12 +1,12 @@
 package com.cool.movie.controller;
 
 
+import com.cool.movie.dto.moviedto.MoviePage;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.service.MovieService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 @CrossOrigin
@@ -29,10 +29,10 @@ public class MovieController {
         return movieService.findById(id);
     }
 
-
-    @GetMapping
-    public void selectByPage(){
-
+    @GetMapping(params = {"pageSize", "pageNumber"})
+    public MoviePage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "6") Integer pageNumber) {
+        return movieService.findByPage(pageSize, pageNumber);
     }
 
 
