@@ -1,0 +1,1 @@
+alter table customer_order add column seating varchar(50) DEFAULT '1-1';

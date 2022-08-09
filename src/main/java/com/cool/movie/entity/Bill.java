@@ -1,10 +1,13 @@
 package com.cool.movie.entity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name="bill")
+@Data
 public class Bill {
     @Id
     private String id;
@@ -16,6 +19,8 @@ public class Bill {
     private String cinemaName;
     @Column(columnDefinition = "movie_schedule")
     private String movieSchedule;
+    @Column(columnDefinition = "room")
+    private String room;
     @Column(columnDefinition = "seating")
     private String seating;
     @Column(columnDefinition = "price")
@@ -27,19 +32,4 @@ public class Bill {
     @Column(columnDefinition = "partner_telephone")
     private String partnerTelephone;
 
-    @Override
-    public String toString() {
-        return "Bill{" +
-                "id='" + id + '\'' +
-                ", movieName='" + movieName + '\'' +
-                ", ticketCode='" + ticketCode + '\'' +
-                ", cinemaName='" + cinemaName + '\'' +
-                ", movieSchedule='" + movieSchedule + '\'' +
-                ", seating='" + seating + '\'' +
-                ", price=" + price +
-                ", partnerName='" + partnerName + '\'' +
-                ", partnerGender='" + partnerGender + '\'' +
-                ", partnerTelephone='" + partnerTelephone + '\'' +
-                '}';
-    }
 }
