@@ -30,6 +30,12 @@ public class MovieController {
     }
 
 
+    @GetMapping
+    public void selectByPage(){
+
+    }
+
+
     @PostMapping
     public void insert(@RequestBody Movie movie) {
 
