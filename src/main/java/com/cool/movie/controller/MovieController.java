@@ -17,34 +17,25 @@ public class MovieController {
     @Resource
     private MovieService movieService;
 
-
     @GetMapping
     public void selectAll(Movie movie) {
-
     }
-
 
     @GetMapping("{id}")
     public Movie selectOne(@PathVariable String id) {
         return movieService.findById(id);
     }
 
-
     @PostMapping
     public void insert(@RequestBody Movie movie) {
-
     }
-
 
     @PutMapping
     public void update(@RequestBody Movie movie) {
-
     }
-
 
     @DeleteMapping
     public void delete(@RequestParam("idList") List<Long> idList) {
-
     }
 }
 

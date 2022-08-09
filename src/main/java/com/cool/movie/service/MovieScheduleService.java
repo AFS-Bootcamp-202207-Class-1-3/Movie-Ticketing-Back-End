@@ -1,6 +1,7 @@
 package com.cool.movie.service;
 
 
+import com.cool.movie.dto.MovieScheduleResponse;
 import com.cool.movie.entity.MovieSchedule;
 
 import java.util.List;
@@ -68,5 +69,7 @@ public interface MovieScheduleService {
      * count
      */
     long count();
+
+    List<MovieSchedule> findMovieSchedulesByCinemaId(String cinemaId);
 }
 

@@ -68,5 +68,7 @@ public interface OrderService {
      * count
      */
     long count();
+
+    CustomerOrder getSameViewingTime(OrderRequest orderRequest);
 }
 

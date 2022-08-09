@@ -1,5 +1,4 @@
 package com.cool.movie.service.impl;
-
 import com.cool.movie.entity.MovieSchedule;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.MovieScheduleRepository;
@@ -112,5 +111,18 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
     public long count() {
         return movieScheduleRepository.count();
     }
+
+
+
+    /**
+     * findByParam
+     *
+     * @param cinemaId
+     */
+    @Override
+    public List<MovieSchedule> findMovieSchedulesByCinemaId(String cinemaId) {
+        return movieScheduleRepository.getMovieSchedulesByCinemaId(cinemaId);
+    }
+
 }
 

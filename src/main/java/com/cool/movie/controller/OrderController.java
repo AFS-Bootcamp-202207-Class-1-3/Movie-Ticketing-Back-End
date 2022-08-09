@@ -67,6 +67,16 @@ public class OrderController {
 
     }
 
+    @GetMapping("/viewingTime")
+    public Boolean isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
+        CustomerOrder sameViewingTime = orderService.getSameViewingTime(orderRequest);
+        if (sameViewingTime==null||sameViewingTime.equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 
     @DeleteMapping
     public void delete(@RequestParam("idList") List<Long> idList) {

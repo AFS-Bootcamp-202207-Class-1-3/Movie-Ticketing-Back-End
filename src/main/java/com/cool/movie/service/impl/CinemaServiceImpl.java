@@ -101,7 +101,7 @@ public class CinemaServiceImpl implements CinemaService {
      * findAll
      */
     @Override
-    public Iterable<Cinema> findAll() {
+    public List<Cinema> findAll() {
         return cinemaRepository.findAll();
     }
 

@@ -61,7 +61,7 @@ public interface CinemaService {
     /**
      * findAll
      */
-    Iterable<Cinema> findAll();
+    List<Cinema> findAll();
 
     /**
      * count
