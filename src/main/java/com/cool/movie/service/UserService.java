@@ -14,7 +14,7 @@ public interface UserService {
      *
      * @param
      */
-    Optional<Customer> findById(String id);
+    Customer findById(String id);
 
     /**
      * findByParam

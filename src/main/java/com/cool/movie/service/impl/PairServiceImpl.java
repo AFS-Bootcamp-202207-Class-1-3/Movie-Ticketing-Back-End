@@ -34,8 +34,8 @@ public class PairServiceImpl implements PairService {
      * @param id
      */
     @Override
-    public Optional<Pair> findById(String id) {
-        return pairRepository.findById(id);
+    public Pair findById(String id) {
+        return pairRepository.findById(id).orElseThrow(() -> new NotFoundException(Pair.class.getSimpleName()));
     }
 
     /**

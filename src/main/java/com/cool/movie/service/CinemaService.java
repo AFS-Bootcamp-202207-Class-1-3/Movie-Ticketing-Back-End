@@ -13,7 +13,7 @@ public interface CinemaService {
      *
      * @param
      */
-    Optional<Cinema> findById(String id);
+    Cinema findById(String id);
 
     /**
      * findByParam

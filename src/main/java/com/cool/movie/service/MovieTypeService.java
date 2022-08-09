@@ -13,7 +13,7 @@ public interface MovieTypeService {
      *
      * @param
      */
-    Optional<MovieType> findById(String id);
+    MovieType findById(String id);
 
     /**
      * findByParam

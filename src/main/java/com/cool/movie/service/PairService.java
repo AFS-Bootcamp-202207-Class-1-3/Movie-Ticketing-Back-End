@@ -17,7 +17,7 @@ public interface PairService {
      *
      * @param
      */
-    Optional<Pair> findById(String id);
+    Pair findById(String id);
 
     /**
      * findByParam

@@ -14,7 +14,7 @@ public interface MovieScheduleService {
      *
      * @param
      */
-    Optional<MovieSchedule> findById(String id);
+    MovieSchedule findById(String id);
 
     /**
      * findByParam
