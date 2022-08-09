@@ -2,7 +2,6 @@ package com.cool.movie.controller;
 
 import com.cool.movie.entity.Movie;
 import com.cool.movie.repository.MovieRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,10 +23,6 @@ public class MovieControllerTest {
     @Autowired
     private MovieRepository movieRepository;
 
-    @BeforeEach
-    void cleanDB() {
-        movieRepository.deleteAll();
-    }
 
     @Test
     void should_return_selected_movie_when_call_get_api_given_movie_id() throws Exception {

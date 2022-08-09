@@ -4,7 +4,6 @@ package com.cool.movie.service;
 import com.cool.movie.entity.MovieSchedule;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface MovieScheduleService {
@@ -14,7 +13,7 @@ public interface MovieScheduleService {
      *
      * @param
      */
-    Optional<MovieSchedule> findById(String id);
+    MovieSchedule findById(String id);
 
     /**
      * findByParam

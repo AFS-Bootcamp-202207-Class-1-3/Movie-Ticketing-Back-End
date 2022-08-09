@@ -1,13 +1,13 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.Pay;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.PayRepository;
 import com.cool.movie.service.PayService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (Pay)
@@ -28,8 +28,8 @@ public class PayServiceImpl implements PayService {
      * @param id
      */
     @Override
-    public Optional<Pay> findById(String id) {
-        return payRepository.findById(id);
+    public Pay findById(String id) {
+        return payRepository.findById(id).orElseThrow(() -> new NotFoundException(Pay.class.getSimpleName()));
     }
 
     /**

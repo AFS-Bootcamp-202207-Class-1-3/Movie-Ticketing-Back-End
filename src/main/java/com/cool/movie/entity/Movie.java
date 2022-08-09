@@ -1,7 +1,6 @@
 package com.cool.movie.entity;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;

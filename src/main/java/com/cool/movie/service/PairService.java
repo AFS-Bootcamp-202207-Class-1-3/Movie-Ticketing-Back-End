@@ -4,7 +4,6 @@ package com.cool.movie.service;
 import com.cool.movie.entity.Pair;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface PairService {
@@ -17,7 +16,7 @@ public interface PairService {
      *
      * @param
      */
-    Optional<Pair> findById(String id);
+    Pair findById(String id);
 
     /**
      * findByParam

@@ -6,12 +6,10 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 
-
 @Entity
 public class Pair implements Serializable {
 
     private static final long serialVersionUID = 427075234961060497L;
-
 
 
     @Id
