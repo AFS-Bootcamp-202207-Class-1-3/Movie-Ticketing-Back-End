@@ -1,13 +1,18 @@
 package com.cool.movie.service;
 
 
+import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface OrderService {
 
+
+    OrderDetailResponse getOrderDetailResponse(Serializable id);
     /**
      * findById
      *
