@@ -13,4 +13,8 @@ public class OrderDetailResponse {
     private Boolean isPay;
     private Double Price;
     private String userName;
+
+    public OrderDetailResponse() {
+    }
+
 }
