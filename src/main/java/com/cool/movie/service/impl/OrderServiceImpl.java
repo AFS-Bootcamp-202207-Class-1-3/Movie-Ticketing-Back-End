@@ -33,8 +33,8 @@ public class OrderServiceImpl implements OrderService {
      * @param id
      */
     @Override
-    public Optional<CustomerOrder> findById(String id) {
-        return Optional.ofNullable(orderRepository.findById(id).orElseThrow(() -> new NotFoundException(CustomerOrder.class.getSimpleName())));
+    public CustomerOrder findById(String id) {
+        return orderRepository.findById(id).orElseThrow(() -> new NotFoundException(CustomerOrder.class.getSimpleName()));
     }
 
     /**

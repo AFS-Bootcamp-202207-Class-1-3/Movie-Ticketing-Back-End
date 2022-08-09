@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @SpringBootApplication
 public class MovieApplication {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     SpringApplication.run(MovieApplication.class, args);
   }
 }

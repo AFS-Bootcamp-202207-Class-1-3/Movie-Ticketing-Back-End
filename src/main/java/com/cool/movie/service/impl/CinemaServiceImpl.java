@@ -29,8 +29,8 @@ public class CinemaServiceImpl implements CinemaService {
      * @param id
      */
     @Override
-    public Optional<Cinema> findById(String id) {
-        return Optional.ofNullable(cinemaRepository.findById(id)).orElseThrow(() -> new NotFoundException(Cinema.class.getSimpleName()));
+    public Cinema findById(String id) {
+        return cinemaRepository.findById(id).orElseThrow(() -> new NotFoundException(Cinema.class.getSimpleName()));
     }
 
     /**

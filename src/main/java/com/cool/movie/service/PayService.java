@@ -14,7 +14,7 @@ public interface PayService {
      *
      * @param id
      */
-    Optional<Pay> findById(String id);
+    Pay findById(String id);
 
     /**
      * findByParam

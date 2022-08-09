@@ -14,7 +14,7 @@ public interface OrderService {
      *
      * @param
      */
-    Optional<CustomerOrder> findById(String id);
+    CustomerOrder findById(String id);
 
     /**
      * findByParam
