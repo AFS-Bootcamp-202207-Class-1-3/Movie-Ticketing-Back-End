@@ -19,8 +19,8 @@ public class CinemaController {
 
 
     @GetMapping
-    public void selectAll(Cinema cinema) {
-
+    public List<Cinema> selectAll() {
+        return cinemaService.findAll();
     }
 
 
@@ -44,7 +44,6 @@ public class CinemaController {
 
     @DeleteMapping
     public void delete(@RequestParam("idList") List<Long> idList) {
-
     }
 }
 

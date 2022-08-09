@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (Cinema)
@@ -101,7 +100,7 @@ public class CinemaServiceImpl implements CinemaService {
      * findAll
      */
     @Override
-    public Iterable<Cinema> findAll() {
+    public List<Cinema> findAll() {
         return cinemaRepository.findAll();
     }
 

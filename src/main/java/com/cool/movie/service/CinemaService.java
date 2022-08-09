@@ -4,7 +4,6 @@ package com.cool.movie.service;
 import com.cool.movie.entity.Cinema;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CinemaService {
 
@@ -61,7 +60,7 @@ public interface CinemaService {
     /**
      * findAll
      */
-    Iterable<Cinema> findAll();
+    List<Cinema> findAll();
 
     /**
      * count

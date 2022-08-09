@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderService {
 
@@ -73,5 +72,7 @@ public interface OrderService {
      * count
      */
     long count();
+
+    CustomerOrder getSameViewingTime(OrderRequest orderRequest);
 }
 

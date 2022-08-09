@@ -1,5 +1,6 @@
 package com.cool.movie.service.impl;
 
+
 import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.Customer;
@@ -146,6 +147,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public long count() {
         return orderRepository.count();
+    }
+
+    @Override
+    public CustomerOrder getSameViewingTime(OrderRequest orderRequest) {
+        return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(orderRequest.getMovieScheduleId(),orderRequest.getCinemaId(),orderRequest.getUserId());
     }
 
     private String generateRandomTicketCode(int length) {
