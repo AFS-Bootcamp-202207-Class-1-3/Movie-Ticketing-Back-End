@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin
 @RequestMapping("order")
 public class OrderController {
 
@@ -42,6 +41,16 @@ public class OrderController {
     @PutMapping
     public void update(@RequestBody CustomerOrder customerOrder) {
 
+    }
+
+    @GetMapping("/viewingTime")
+    public Boolean isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
+        CustomerOrder sameViewingTime = orderService.getSameViewingTime(orderRequest);
+        if (sameViewingTime==null||sameViewingTime.equals("")){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 

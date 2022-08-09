@@ -3,11 +3,9 @@ package com.cool.movie.service.impl;
 
 import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderRequest;
-import com.cool.movie.entity.Customer;
-import com.cool.movie.entity.CustomerOrder;
-import com.cool.movie.entity.Movie;
-import com.cool.movie.entity.MovieSchedule;
+import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.MovieService;
@@ -35,25 +33,23 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderRepository orderRepository;
 
-    @Resource
-    private MovieService movieService;
+
 
     @Resource
-    private UserService userService;
-
-    @Resource
-    private MovieScheduleService movieScheduleService;
+    private OrderDetailViewRepository orderDetailViewRepository;
 
     @Resource
     OrderDetailMapper orderDetailMapper;
 
 
     public OrderDetailResponse getOrderDetailResponse(Serializable id) {
-        CustomerOrder customerOrder = findById(String.valueOf(id));
-        Customer customer = userService.findById(customerOrder.getUserId());
-        Movie movie = movieService.findById(customerOrder.getMovieId());
-        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId());
-        return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
+//        CustomerOrder customerOrder = findById(String.valueOf(id));
+//        Customer customer = userService.findById(customerOrder.getUserId());
+//        Movie movie = movieService.findById(customerOrder.getMovieId());
+//        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId());
+//        return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
+        OrderDetail orderDetail = orderDetailViewRepository.findById(String.valueOf(id)).orElseThrow(() -> new NotFoundException(OrderDetail.class.getSimpleName()));
+        return orderDetailMapper.toResponse(orderDetail);
     }
 
     /**
@@ -147,6 +143,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public long count() {
         return orderRepository.count();
+    }
+
+    @Override
+    public CustomerOrder getSameViewingTime(OrderRequest orderRequest) {
+        return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(orderRequest.getMovieScheduleId(),orderRequest.getCinemaId(),orderRequest.getUserId());
     }
 
     private String generateRandomTicketCode(int length) {
