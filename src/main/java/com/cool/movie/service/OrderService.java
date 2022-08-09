@@ -20,7 +20,7 @@ public interface OrderService {
     CustomerOrder findById(String id);
 
     /**
-     * findByParam
+     * findByParam`
      *
      * @param customerOrder
      */
@@ -32,6 +32,13 @@ public interface OrderService {
      * @param orderRequest
      */
     CustomerOrder save(OrderRequest orderRequest);
+
+    /**
+     * save one
+     *
+     * @param customerOrder
+     */
+    CustomerOrder save(CustomerOrder customerOrder);
 
     /**
      * save
