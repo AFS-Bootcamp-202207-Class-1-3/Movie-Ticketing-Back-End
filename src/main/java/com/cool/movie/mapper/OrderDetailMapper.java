@@ -14,7 +14,7 @@ public class OrderDetailMapper {
         orderDetailResponse.setOrderId(customerOrder.getId());
         orderDetailResponse.setMovieName(movie.getName());
         orderDetailResponse.setPrice(customerOrder.getPrice());
-        orderDetailResponse.setPay(customerOrder.getPay());
+        orderDetailResponse.setIsPay(customerOrder.getIsPay());
         orderDetailResponse.setUserName(customer.getNickName());
         orderDetailResponse.setMovieSchedule(movieSchedule.getStartTime().toString());
         orderDetailResponse.setSeatingArrangement(movieSchedule.getRoom());
