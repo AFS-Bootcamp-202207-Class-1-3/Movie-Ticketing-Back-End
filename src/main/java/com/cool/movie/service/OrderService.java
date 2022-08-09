@@ -1,6 +1,7 @@
 package com.cool.movie.service;
 
 
+import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public interface OrderService {
     /**
      * save one
      *
-     * @param customerOrder
+     * @param orderRequest
      */
-    CustomerOrder save(CustomerOrder customerOrder);
+    CustomerOrder save(OrderRequest orderRequest);
 
     /**
      * save

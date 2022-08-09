@@ -39,7 +39,7 @@ public class BillServiceImpl implements BillService {
         CustomerOrder customerOrder = orderService.findById(orderId).get();
         MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId()).get();
         Cinema cinema = cinemaService.findById(movieSchedule.getCinemaId()).get();
-        Movie movie = movieService.findById(customerOrder.getMovieId()).get();
+        Movie movie = movieService.findById(customerOrder.getMovieId());
         Pair pair = pairService.findByUserId(customerOrder.getUserId());
         Customer pairCustomer = userService.findById(pair.getId()).get();
         return billMapper.toResponse(customerOrder, movieSchedule, cinema, movie, pairCustomer);

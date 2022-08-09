@@ -31,6 +31,21 @@ public class CustomerOrder implements Serializable {
 
     private String userId;
 
+    public CustomerOrder(String id, String movieId, Double price, Boolean isPay, String movieScheduleId,
+                         Boolean hasUsed, String ticketCode, String userId) {
+        this.id = id;
+        this.movieId = movieId;
+        this.price = price;
+        this.isPay = isPay;
+        this.movieScheduleId = movieScheduleId;
+        this.hasUsed = hasUsed;
+        this.ticketCode = ticketCode;
+        this.userId = userId;
+    }
+
+    public CustomerOrder() {
+    }
+
     public String getId() {
         return id;
     }

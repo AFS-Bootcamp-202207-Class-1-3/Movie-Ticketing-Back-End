@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("movie")
 public class MovieController {
@@ -25,8 +25,8 @@ public class MovieController {
 
 
     @GetMapping("{id}")
-    public void selectOne(@PathVariable Serializable id) {
-
+    public Movie selectOne(@PathVariable String id) {
+        return movieService.findById(id);
     }
 
 
