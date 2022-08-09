@@ -2,8 +2,8 @@ package com.cool.movie.enums;
 
 public enum LoginCode {
     SUCCESS(200, "success"),
-    FAILED(500, "fail"),
-    VALIDATE_FAILED(404, "parameter error");
+    FAILED(500, "fail");
+
     private final Integer code;
     private final String message;
 

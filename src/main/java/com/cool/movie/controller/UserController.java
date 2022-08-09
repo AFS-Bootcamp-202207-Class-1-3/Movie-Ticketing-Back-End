@@ -53,11 +53,11 @@ public class UserController {
 
     @PostMapping(path = "/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
-        if (request.getRealName() == null || request.getPassword() == null) {
-            return new LoginResponse(LoginCode.VALIDATE_FAILED.getCode(), LoginCode.VALIDATE_FAILED.getMessage());
-        }
+        Customer customer = userService.findByRealName(request.getRealName());
         return userService.login(request)
-                ? new LoginResponse(LoginCode.SUCCESS.getCode(), LoginCode.SUCCESS.getMessage())
+                ? new LoginResponse(LoginCode.SUCCESS.getCode(), LoginCode.SUCCESS.getMessage(), customer.getId(),
+                customer.getRealName(), customer.getNickName(), customer.getAvatarUrl(), customer.getAge(),
+                customer.getGender(), customer.getPhoneNumber(), customer.getCity(), customer.getIntroduction())
                 :  new LoginResponse(LoginCode.FAILED.getCode(), LoginCode.FAILED.getMessage());
     }
 }

@@ -116,9 +116,6 @@ public class UserServiceImpl implements UserService {
 
     public Boolean login(LoginRequest request) {
         Customer customer = findByRealName(request.getRealName());
-        if (customer != null) {
-            return request.getPassword().equals(customer.getCustomerPwd());
-        }
-        return false;
+        return request.getPassword().equals(customer.getCustomerPwd());
     }
 }
