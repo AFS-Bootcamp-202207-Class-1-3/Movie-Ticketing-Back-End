@@ -1,5 +1,6 @@
 package com.cool.movie.service.impl;
 
+import com.cool.movie.dto.LoginRequest;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.UserRepository;
@@ -107,5 +108,17 @@ public class UserServiceImpl implements UserService {
     public long count() {
         return userRepository.count();
     }
-}
 
+    @Override
+    public Customer findByRealName(String realName) {
+        return userRepository.findByRealName(realName);
+    }
+
+    public Boolean login(LoginRequest request) {
+        Customer customer = findByRealName(request.getRealName());
+        if (customer != null) {
+            return request.getPassword().equals(customer.getCustomerPwd());
+        }
+        return false;
+    }
+}

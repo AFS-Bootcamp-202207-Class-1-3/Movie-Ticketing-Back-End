@@ -1,6 +1,7 @@
 package com.cool.movie.service;
 
 
+import com.cool.movie.dto.LoginRequest;
 import com.cool.movie.entity.Customer;
 
 import java.util.List;
@@ -59,6 +60,8 @@ public interface UserService {
      */
     boolean existsById(String id);
 
+    Customer findByRealName(String realName);
+
     /**
      * findAll
      */
@@ -68,5 +71,7 @@ public interface UserService {
      * count
      */
     long count();
+
+    Boolean login(LoginRequest request);
 }
 

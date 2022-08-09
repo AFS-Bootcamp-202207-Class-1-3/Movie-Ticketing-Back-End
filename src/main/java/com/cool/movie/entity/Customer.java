@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 
-
 @Entity
 public class Customer implements Serializable {
 
@@ -39,6 +38,16 @@ public class Customer implements Serializable {
 
 
     private String introduction;
+
+    private String customerPwd;
+
+    public String getCustomerPwd() {
+        return customerPwd;
+    }
+
+    public void setCustomerPwd(String customerPwd) {
+        this.customerPwd = customerPwd;
+    }
 
     public String getId() {
         return id;
