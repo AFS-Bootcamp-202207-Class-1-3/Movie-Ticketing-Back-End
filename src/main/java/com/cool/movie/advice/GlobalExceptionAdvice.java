@@ -1,7 +1,6 @@
 package com.cool.movie.advice;
 
 
-
 import com.cool.movie.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

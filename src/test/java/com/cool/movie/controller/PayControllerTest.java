@@ -3,7 +3,6 @@ package com.cool.movie.controller;
 import com.cool.movie.entity.Pay;
 import com.cool.movie.repository.PayRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,10 +22,6 @@ public class PayControllerTest {
     @Autowired
     private PayRepository payRepository;
 
-    @BeforeEach
-    void cleanDB() {
-        payRepository.deleteAll();
-    }
 
     @Test
     void should_return_updated_pay_when_call_put_update_api_given_pay() throws Exception {
