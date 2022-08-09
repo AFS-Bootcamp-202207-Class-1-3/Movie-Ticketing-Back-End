@@ -29,8 +29,8 @@ public class MovieServiceImpl implements MovieService {
      * @param id
      */
     @Override
-    public Optional<Movie> findById(String id) {
-        return Optional.ofNullable(movieRepository.findById(id)).orElseThrow(() -> new NotFoundException(Movie.class.getSimpleName()));
+    public Movie findById(String id) {
+        return movieRepository.findById(id).orElseThrow(() -> new NotFoundException(Movie.class.getSimpleName()));
     }
 
     /**

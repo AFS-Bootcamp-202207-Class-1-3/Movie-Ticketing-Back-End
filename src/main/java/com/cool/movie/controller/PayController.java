@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("pay")
+@CrossOrigin
 public class PayController {
 
     @Resource

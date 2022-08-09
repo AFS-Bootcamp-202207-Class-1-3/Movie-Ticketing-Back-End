@@ -13,7 +13,18 @@ public class Movie implements Serializable {
 
     private static final long serialVersionUID = 453243192035227036L;
 
+    public Movie(String id, String name, String introduction, Date releaseTime, Integer duration, String types, String postUrl) {
+        this.id = id;
+        this.name = name;
+        this.introduction = introduction;
+        this.releaseTime = releaseTime;
+        this.duration = duration;
+        this.types = types;
+        this.postUrl = postUrl;
+    }
 
+    public Movie() {
+    }
 
     @Id
     private String id;
