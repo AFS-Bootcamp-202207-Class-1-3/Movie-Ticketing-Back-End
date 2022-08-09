@@ -44,6 +44,7 @@ public class MovieControllerTest {
     void should_return_movie_page_when_get_given_pageSize_and_pageNumber() throws Exception{
 
         // given
+        movieRepository.deleteAll();
         ArrayList<Movie> movies = new ArrayList<>();
         for (int round = 0; round < 10; round++) {
             movies.add(new Movie(round + "", "my_movie", "this is my movie",
