@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin
 @RequestMapping("order")
 public class OrderController {
 
