@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/movie
     username: postgres
-    password: ooclmysql
+    password: root
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
