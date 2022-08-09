@@ -1,28 +1,25 @@
 package com.cool.movie.dto.moviedto;
 
 
-import com.cool.movie.entity.Movie;
-
 import java.util.List;
 
 /**
  * MoviePage
  * 电影的分页封装
- *
  */
 public class MoviePage {
     private Integer pageSize;
     private Integer pageNumber;
     private Integer totalPages;
     private Integer currentPage;
-    private List<Movie> movies;
+    private List<MovieResponse> movieResponses;
 
-    public MoviePage(Integer pageSize, Integer pageNumber, Integer totalPages, Integer currentPage, List<Movie> movies) {
+    public MoviePage(Integer pageSize, Integer pageNumber, Integer totalPages, Integer currentPage, List<MovieResponse> movieResponses) {
         this.pageSize = pageSize;
         this.pageNumber = pageNumber;
         this.totalPages = totalPages;
         this.currentPage = currentPage;
-        this.movies = movies;
+        this.movieResponses = movieResponses;
     }
 
     public MoviePage() {
@@ -60,11 +57,11 @@ public class MoviePage {
         this.currentPage = currentPage;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
+    public List<MovieResponse> getMovieResponses() {
+        return movieResponses;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void setMovieResponses(List<MovieResponse> movieResponses) {
+        this.movieResponses = movieResponses;
     }
 }
