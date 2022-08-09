@@ -1,6 +1,5 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.advice.GlobalExceptionAdvice;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.exception.NotFoundException;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 

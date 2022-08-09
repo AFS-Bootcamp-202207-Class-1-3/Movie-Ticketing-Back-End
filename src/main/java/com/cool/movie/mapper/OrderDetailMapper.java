@@ -1,4 +1,4 @@
-package mapper;
+package com.cool.movie.mapper;
 
 import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.entity.Customer;

@@ -7,19 +7,16 @@ import com.cool.movie.entity.Customer;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.entity.MovieSchedule;
+import com.cool.movie.mapper.OrderDetailMapper;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.service.UserService;
-import mapper.OrderDetailMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 
 @RestController

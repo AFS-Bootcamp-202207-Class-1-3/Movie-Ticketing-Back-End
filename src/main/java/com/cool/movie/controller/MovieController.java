@@ -6,7 +6,6 @@ import com.cool.movie.service.MovieService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 @CrossOrigin

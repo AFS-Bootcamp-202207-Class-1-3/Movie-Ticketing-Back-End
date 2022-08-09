@@ -3,7 +3,6 @@ package com.cool.movie.controller;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.repository.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,9 +22,12 @@ public class OrderControllerTest {
     @Autowired
     private OrderRepository orderRepository;
 
-    @BeforeEach
-    void cleanDB() {
-        orderRepository.deleteAll();
+    @Test
+    public void should_return_order_info_when_get_order_given_order_id() throws Exception {
+        Integer id = 1;
+        client.perform(MockMvcRequestBuilders.get("/order/{id}", id))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.orderId").value(id));
     }
 
     @Test
@@ -48,4 +50,12 @@ public class OrderControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.movieId").value(request.getMovieId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.movieScheduleId").value(request.getMovieScheduleId()));
     }
+
+    @Test
+    public void should_return_not_found_when_get_order_given_invalid_order_id() throws Exception {
+        client.perform(MockMvcRequestBuilders.get("/order/sssssssss"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+
 }

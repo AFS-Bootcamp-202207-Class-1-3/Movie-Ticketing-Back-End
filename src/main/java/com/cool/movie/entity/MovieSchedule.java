@@ -13,7 +13,6 @@ public class MovieSchedule implements Serializable {
     private static final long serialVersionUID = 140755435576497910L;
 
 
-
     @Id
     private String id;
 
