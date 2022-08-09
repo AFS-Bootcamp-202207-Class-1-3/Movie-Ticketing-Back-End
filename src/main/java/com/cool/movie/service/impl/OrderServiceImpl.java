@@ -1,16 +1,23 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.advice.GlobalExceptionAdvice;
+import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.entity.Customer;
 import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.entity.Movie;
+import com.cool.movie.entity.MovieSchedule;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.OrderRepository;
+import com.cool.movie.service.MovieScheduleService;
+import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
+import com.cool.movie.service.UserService;
+import com.cool.movie.mapper.OrderDetailMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -26,6 +33,27 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     private OrderRepository orderRepository;
+
+    @Resource
+    private MovieService movieService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private MovieScheduleService movieScheduleService;
+
+    @Resource
+    OrderDetailMapper orderDetailMapper;
+
+
+    public OrderDetailResponse getOrderDetailResponse(Serializable id) {
+        CustomerOrder customerOrder = findById(String.valueOf(id));
+        Customer customer = userService.findById(customerOrder.getUserId());
+        Movie movie = movieService.findById(customerOrder.getMovieId());
+        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId());
+        return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
+    }
 
     /**
      * findById
