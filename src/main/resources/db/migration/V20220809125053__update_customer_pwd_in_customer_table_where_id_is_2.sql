@@ -1,0 +1,1 @@
+UPDATE customer SET customer_pwd = 111111 WHERE ID = '2';

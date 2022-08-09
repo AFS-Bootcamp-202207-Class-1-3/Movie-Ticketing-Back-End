@@ -1,0 +1,1 @@
+alter table customer add column customer_pwd varchar(42) DEFAULT '123456';
