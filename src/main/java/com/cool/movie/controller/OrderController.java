@@ -46,8 +46,14 @@ public class OrderController {
     @PostMapping("/viewingTime")
     public String isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
         CustomerOrder sameViewingTime = orderService.getSameViewingTime(orderRequest);
+        CustomerOrder saveCustomerOrder = new CustomerOrder();
+        saveCustomerOrder.setCinemaId(orderRequest.getCinemaId());
+        saveCustomerOrder.setMovieScheduleId(orderRequest.getMovieScheduleId());
+        saveCustomerOrder.setUserId(orderRequest.getUserId());
+        saveCustomerOrder.setMovieId(orderRequest.getMovieId());
         if (sameViewingTime==null||sameViewingTime.equals("")){
-            return null;
+            CustomerOrder save = orderService.save(saveCustomerOrder);
+            return save.getId();
         }else{
             return sameViewingTime.getId();
         }
