@@ -5,7 +5,6 @@ import com.cool.movie.dto.LoginRequest;
 import com.cool.movie.entity.Customer;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface UserService {
@@ -15,7 +14,7 @@ public interface UserService {
      *
      * @param
      */
-    Optional<Customer> findById(String id);
+    Customer findById(String id);
 
     /**
      * findByParam

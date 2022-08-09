@@ -1,31 +1,7 @@
-package com.cool.movie.entity;
+package com.cool.movie.dto.moviedto;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.Date;
-
-
-@Entity
-public class Movie implements Serializable {
-
-    private static final long serialVersionUID = 453243192035227036L;
-
-    public Movie(String id, String name, String introduction, Date releaseTime, Integer duration, String types, String postUrl) {
-        this.id = id;
-        this.name = name;
-        this.introduction = introduction;
-        this.releaseTime = releaseTime;
-        this.duration = duration;
-        this.types = types;
-        this.postUrl = postUrl;
-    }
-
-    public Movie() {
-    }
-
-    @Id
+public class MovieResponse {
     private String id;
 
 
@@ -35,13 +11,26 @@ public class Movie implements Serializable {
     private String introduction;
 
 
-    private Date releaseTime;
+    private String releaseTime;
 
     private Integer duration;
 
     private String types;
 
     private String postUrl;
+
+    public MovieResponse(String id, String name, String introduction, String releaseTime, Integer duration, String types, String postUrl) {
+        this.id = id;
+        this.name = name;
+        this.introduction = introduction;
+        this.releaseTime = releaseTime;
+        this.duration = duration;
+        this.types = types;
+        this.postUrl = postUrl;
+    }
+
+    public MovieResponse() {
+    }
 
     public String getId() {
         return id;
@@ -67,11 +56,11 @@ public class Movie implements Serializable {
         this.introduction = introduction;
     }
 
-    public Date getReleaseTime() {
+    public String getReleaseTime() {
         return releaseTime;
     }
 
-    public void setReleaseTime(Date releaseTime) {
+    public void setReleaseTime(String releaseTime) {
         this.releaseTime = releaseTime;
     }
 
@@ -99,4 +88,3 @@ public class Movie implements Serializable {
         this.postUrl = postUrl;
     }
 }
-

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (MovieSchedule)
@@ -29,8 +28,8 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
      * @param id
      */
     @Override
-    public Optional<MovieSchedule> findById(String id) {
-        return Optional.ofNullable(movieScheduleRepository.findById(id).orElseThrow(() -> new NotFoundException("MovieSchedule")));
+    public MovieSchedule findById(String id) {
+        return movieScheduleRepository.findById(id).orElseThrow(() -> new NotFoundException(MovieSchedule.class.getSimpleName()));
     }
 
     /**

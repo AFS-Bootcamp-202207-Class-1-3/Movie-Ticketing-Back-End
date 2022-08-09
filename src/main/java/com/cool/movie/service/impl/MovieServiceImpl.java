@@ -1,14 +1,18 @@
 package com.cool.movie.service.impl;
 
+import com.cool.movie.dto.moviedto.MoviePage;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.MovieMapper;
 import com.cool.movie.repository.MovieRepository;
 import com.cool.movie.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (Movie)
@@ -23,6 +27,9 @@ public class MovieServiceImpl implements MovieService {
     @Resource
     private MovieRepository movieRepository;
 
+    @Autowired
+    private MovieMapper movieMapper;
+
     /**
      * findById
      *
@@ -31,6 +38,21 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie findById(String id) {
         return movieRepository.findById(id).orElseThrow(() -> new NotFoundException(Movie.class.getSimpleName()));
+    }
+
+    @Override
+    public MoviePage findByPage(Integer pageSize, Integer pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        Page<Movie> moviesFind = movieRepository.findAll(pageRequest);
+
+        MoviePage moviePage = new MoviePage(pageSize
+                , pageNumber
+                , moviesFind.getTotalPages()
+                , (int) moviesFind.getTotalElements()
+                , (int) moviesFind.getNumberOfElements()
+                , movieMapper.toResponses(moviesFind.toList()));
+
+        return moviePage;
     }
 
     /**

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (Cinema)
@@ -29,8 +28,8 @@ public class CinemaServiceImpl implements CinemaService {
      * @param id
      */
     @Override
-    public Optional<Cinema> findById(String id) {
-        return Optional.ofNullable(cinemaRepository.findById(id)).orElseThrow(() -> new NotFoundException(Cinema.class.getSimpleName()));
+    public Cinema findById(String id) {
+        return cinemaRepository.findById(id).orElseThrow(() -> new NotFoundException(Cinema.class.getSimpleName()));
     }
 
     /**

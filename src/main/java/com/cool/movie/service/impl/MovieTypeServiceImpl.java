@@ -1,13 +1,13 @@
 package com.cool.movie.service.impl;
 
 import com.cool.movie.entity.MovieType;
+import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.MovieTypeRepository;
 import com.cool.movie.service.MovieTypeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (MovieType)
@@ -28,8 +28,8 @@ public class MovieTypeServiceImpl implements MovieTypeService {
      * @param id
      */
     @Override
-    public Optional<MovieType> findById(String id) {
-        return movieTypeRepository.findById(id);
+    public MovieType findById(String id) {
+        return movieTypeRepository.findById(id).orElseThrow(() -> new NotFoundException(MovieType.class.getSimpleName()));
     }
 
     /**
