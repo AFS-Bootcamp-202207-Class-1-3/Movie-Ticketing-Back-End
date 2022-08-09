@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("user")
-@CrossOrigin
 public class UserController {
 
     @Resource

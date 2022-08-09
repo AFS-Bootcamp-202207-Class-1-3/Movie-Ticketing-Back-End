@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("bills")
-@CrossOrigin
 public class BillController {
     @Resource
     BillService billService;
