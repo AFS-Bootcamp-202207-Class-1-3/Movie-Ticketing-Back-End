@@ -1,11 +1,13 @@
-package mapper;
+package com.cool.movie.mapper;
 
 import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.entity.MovieSchedule;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderDetailMapper {
     public OrderDetailResponse toResponse(CustomerOrder customerOrder, Customer customer, Movie movie, MovieSchedule movieSchedule) {
         OrderDetailResponse orderDetailResponse = new OrderDetailResponse();
