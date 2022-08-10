@@ -23,6 +23,7 @@ public class BillControllerTest {
     @Test
     void should_return_BillResponse_when_perform_bills_api_given_orderId() throws Exception {
         // given
+
         Integer testId = 1;
         client.perform(MockMvcRequestBuilders.get("/bills/{id}", testId))
                 .andExpect(MockMvcResultMatchers.status().isOk())

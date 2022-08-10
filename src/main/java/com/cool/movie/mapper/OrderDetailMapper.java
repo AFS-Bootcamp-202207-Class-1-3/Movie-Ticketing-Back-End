@@ -18,14 +18,5 @@ public class OrderDetailMapper {
                 .Price(orderDetail.getPrice())
                 .userName(orderDetail.getUserName())
                 .build();
-//        OrderDetailResponse orderDetailResponse = new OrderDetailResponse();
-//        orderDetailResponse.setOrderId(customerOrder.getId());
-//        orderDetailResponse.setMovieName(movie.getName());
-//        orderDetailResponse.setPrice(customerOrder.getPrice());
-//        orderDetailResponse.setPay(customerOrder.getPay());
-//        orderDetailResponse.setUserName(customer.getNickName());
-//        orderDetailResponse.setMovieSchedule(movieSchedule.getStartTime().toString());
-//        orderDetailResponse.setSeatingArrangement(movieSchedule.getRoom());
-//        return orderDetailResponse;
     }
 }

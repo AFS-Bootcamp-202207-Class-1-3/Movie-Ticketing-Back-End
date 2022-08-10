@@ -43,11 +43,6 @@ public class OrderServiceImpl implements OrderService {
 
 
     public OrderDetailResponse getOrderDetailResponse(Serializable id) {
-//        CustomerOrder customerOrder = findById(String.valueOf(id));
-//        Customer customer = userService.findById(customerOrder.getUserId());
-//        Movie movie = movieService.findById(customerOrder.getMovieId());
-//        MovieSchedule movieSchedule = movieScheduleService.findById(customerOrder.getMovieScheduleId());
-//        return orderDetailMapper.toResponse(customerOrder, customer, movie, movieSchedule);
         OrderDetail orderDetail = orderDetailViewRepository.findById(String.valueOf(id)).orElseThrow(() -> new NotFoundException(OrderDetail.class.getSimpleName()));
         return orderDetailMapper.toResponse(orderDetail);
     }
