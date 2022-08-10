@@ -84,4 +84,17 @@ public class OrderControllerTest {
         }
     }*/
 
+    @Test
+    public void should_return_orderListResponses_when_get_getOrderList_given_userId_startPage_pageSize() throws Exception {
+        //given
+        String userId = "1";
+        Integer pageSize = 5;
+        Integer startPage = 1;
+        //when then
+        mockMvc.perform(MockMvcRequestBuilders.get("/order/getOrderList?userId={userId}&pageSize={pageSize}&startPage={startPage}", userId,pageSize, startPage))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("10"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("movie-10"));
+    }
+
 }
