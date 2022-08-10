@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("movieSchedule")
+@CrossOrigin
 public class MovieScheduleController {
 
     @Resource
