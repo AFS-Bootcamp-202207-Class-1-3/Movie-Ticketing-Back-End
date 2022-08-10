@@ -34,6 +34,7 @@ public interface PayService {
      *
      * @param pays
      */
+    Pay save(Pay pays);
     List<Pay> save(List<Pay> pays);
 
     /**

@@ -55,6 +55,11 @@ public class PayServiceImpl implements PayService {
         return payRepository.save(updatePay);
     }
 
+    @Override
+    public Pay save(Pay pays) {
+        return payRepository.save(pays);
+    }
+
     /**
      * save
      *
