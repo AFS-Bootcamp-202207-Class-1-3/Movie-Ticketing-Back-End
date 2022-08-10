@@ -29,4 +29,5 @@ public class CinemaControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.*").value(hasSize(10)));
     }
+
 }
