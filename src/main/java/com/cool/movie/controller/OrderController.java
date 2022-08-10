@@ -2,6 +2,7 @@ package com.cool.movie.controller;
 
 
 import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderForPairRequest;
 import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
@@ -35,7 +36,7 @@ public class OrderController {
 
 
     @PostMapping
-    public CustomerOrder insert(@RequestBody OrderRequest request) {
+    public CustomerOrder insert(@RequestBody OrderForPairRequest request) {
         return orderService.save(request);
     }
 

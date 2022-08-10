@@ -26,6 +26,14 @@ public class Pair implements Serializable {
 
     private String movieScheduleId;
 
+    public Pair(String id, String userId, String partnerId, String movieScheduleId) {
+        this.id = id;
+        this.userId = userId;
+        this.partnerId = partnerId;
+        this.movieScheduleId = movieScheduleId;
+    }
 
+    public Pair() {
+    }
 }
 

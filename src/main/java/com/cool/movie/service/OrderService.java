@@ -2,6 +2,7 @@ package com.cool.movie.service;
 
 
 import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderForPairRequest;
 import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
@@ -32,7 +33,7 @@ public interface OrderService {
      *
      * @param orderRequest
      */
-    CustomerOrder save(OrderRequest orderRequest);
+    CustomerOrder save(OrderForPairRequest orderRequest);
 
     /**
      * save

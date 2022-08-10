@@ -33,7 +33,10 @@ public class CustomerOrder implements Serializable {
 
     private String userId;
 
-    public CustomerOrder(String id, String movieId, Double price, String cinemaId, Boolean isPay, String movieScheduleId, Boolean hasUsed, String ticketCode, String userId) {
+    private String seating;
+
+    public CustomerOrder(String id, String movieId, Double price, String cinemaId, Boolean isPay, String movieScheduleId,
+                         Boolean hasUsed, String ticketCode, String userId, String seating) {
         this.id = id;
         this.movieId = movieId;
         this.price = price;
@@ -43,23 +46,10 @@ public class CustomerOrder implements Serializable {
         this.hasUsed = hasUsed;
         this.ticketCode = ticketCode;
         this.userId = userId;
-    }
-
-    public CustomerOrder(String id, String movieId, Double price, Boolean isPay, String movieScheduleId,
-                         Boolean hasUsed, String ticketCode, String userId) {
-        this.id = id;
-        this.movieId = movieId;
-        this.price = price;
-        this.isPay = isPay;
-        this.movieScheduleId = movieScheduleId;
-        this.hasUsed = hasUsed;
-        this.ticketCode = ticketCode;
-        this.userId = userId;
+        this.seating = seating;
     }
 
     public CustomerOrder() {
     }
-
-
 
 }
