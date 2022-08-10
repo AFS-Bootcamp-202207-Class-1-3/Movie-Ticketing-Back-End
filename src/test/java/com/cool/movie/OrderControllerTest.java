@@ -57,16 +57,16 @@ public class OrderControllerTest {
     public void should_return_orderListResponses_when_get_getOrderList_given_userId_startPage_pageSize() throws Exception {
         //given
         String userId = "1";
+        Integer pageNumber = 1;
         Integer pageSize = 5;
-        Integer startPage = 1;
         //when then
-        mockMvc.perform(MockMvcRequestBuilders.get("/order/getOrderList?userId={userId}&pageSize={pageSize}&startPage={startPage}", userId,pageSize, startPage))
+        mockMvc.perform(MockMvcRequestBuilders.get("/order/getOrderList?pageSize={pageSize}&pageNumber={pageNumber}&userId={userId}",pageSize,pageNumber, userId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("10"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].startTime").value("2022-08-10"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].price").value("6600.0"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].isPay").value("true"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("movie-10"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").value("5"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").value("1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").value("2"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalOrders").value("10"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.ordersCount").value("5"));
     }
 
 }

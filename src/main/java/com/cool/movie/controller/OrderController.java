@@ -1,10 +1,9 @@
 package com.cool.movie.controller;
-
-
 import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.dto.order.OrderForPairRequest;
 import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderRequest;
+import com.cool.movie.dto.orderdto.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -65,12 +64,11 @@ public class OrderController {
 
     }
 
-    @GetMapping(value = "/getOrderList",params = {"userId","pageSize", "startPage"})
-    public List<OrderListResponse> getOrderList(
-            @RequestParam(value = "userId", defaultValue = "1") String userId,
-            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-            @RequestParam(value = "startPage",defaultValue = "0") Integer startPage){
-        return orderService.getOrderList(userId,pageSize,startPage);
+    @GetMapping(value = "/getOrderList", params = {"pageSize", "pageNumber", "userId"})
+    public OrderPage selectByPage(@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "5", required = false) Integer pageNumber
+            , @RequestParam(value = "userId") String userId) {
+        return orderService.findSingleByPage(pageSize, pageNumber, userId);
     }
 
 }

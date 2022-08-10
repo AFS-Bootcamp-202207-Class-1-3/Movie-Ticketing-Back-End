@@ -1,9 +1,4 @@
-package com.cool.movie.dto.order;
-
-import lombok.Builder;
-import lombok.Data;
-
-import javax.persistence.Column;
+package com.cool.movie.dto;
 import java.util.Date;
 
 public interface OrderListResponse {
