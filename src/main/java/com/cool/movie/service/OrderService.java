@@ -2,6 +2,7 @@ package com.cool.movie.service;
 
 
 import com.cool.movie.dto.OrderDetailResponse;
+import com.cool.movie.dto.OrderListResponse;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 
@@ -80,5 +81,8 @@ public interface OrderService {
     long count();
 
     CustomerOrder getSameViewingTime(OrderRequest orderRequest);
+
+    List<OrderListResponse> getOrderList(String userId, Integer pageSize, Integer startPage);
+
 }
 

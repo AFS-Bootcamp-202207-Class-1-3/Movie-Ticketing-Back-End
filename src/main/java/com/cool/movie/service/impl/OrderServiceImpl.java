@@ -2,6 +2,7 @@ package com.cool.movie.service.impl;
 
 
 import com.cool.movie.dto.OrderDetailResponse;
+import com.cool.movie.dto.OrderListResponse;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -151,6 +153,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public CustomerOrder getSameViewingTime(OrderRequest orderRequest) {
         return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(orderRequest.getMovieScheduleId(),orderRequest.getCinemaId(),orderRequest.getUserId());
+    }
+
+    @Override
+    public List<OrderListResponse> getOrderList(String userId, Integer pageSize, Integer startPage) {
+        Integer result = (startPage - 1) * pageSize;
+        return orderRepository.getOrderByUserIdAndByPage(userId,pageSize,result);
     }
 
     private String generateRandomTicketCode(int length) {

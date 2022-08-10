@@ -63,6 +63,25 @@ public class OrderControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value(false));
     }
 
-
+/*    @Test
+    public void testOrder() {
+        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
+        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
+        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
+        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
+        String pageSize = "5";
+        String startPage = "1";
+        Integer result = (Integer.parseInt(startPage) - 1) * Integer.parseInt(pageSize);
+        List<OrderListResponse> orderByUserIdAndByPage = orderRepository.getOrderByUserIdAndByPage("1",pageSize, String.valueOf(result));
+        for (OrderListResponse o : orderByUserIdAndByPage) {
+            System.out.println("--------------");
+            System.out.println(o.getName());
+            System.out.println(o.getIsPay());
+            System.out.println(o.getId());
+            System.out.println(o.getPrice());
+            System.out.println(o.getStartTime());
+            System.out.println("--------------");
+        }
+    }*/
 
 }

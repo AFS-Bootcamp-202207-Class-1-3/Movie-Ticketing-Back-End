@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -30,7 +31,6 @@ public interface OrderRepository extends JpaRepository<CustomerOrder, String> {
             "where co.user_id = ?1 " +
             "order by co.is_pay , ms.start_time desc " +
             "limit ?2 offset ?3", nativeQuery = true)
-    //(page-1)*pageSize
-    List<OrderListResponse> getOrderByUserIdAndByPage(String userId, String pageSize, String startPage);
+    List<OrderListResponse> getOrderByUserIdAndByPage(String userId, Integer pageSize, Integer startPage);
 }
 
