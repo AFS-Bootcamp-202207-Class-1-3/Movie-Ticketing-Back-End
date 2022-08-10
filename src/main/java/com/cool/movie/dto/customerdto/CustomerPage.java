@@ -1,6 +1,5 @@
 package com.cool.movie.dto.customerdto;
 
-import com.cool.movie.dto.moviedto.MovieResponse;
 import lombok.Data;
 
 import java.util.List;
@@ -17,5 +16,5 @@ public class CustomerPage {
 
     private Integer CustomerCount;
 
-    private List<MovieResponse> movieResponses;
+    private List<CustomerResponse> customerResponses;
 }

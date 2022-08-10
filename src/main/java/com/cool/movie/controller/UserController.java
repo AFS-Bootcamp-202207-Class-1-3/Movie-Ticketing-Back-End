@@ -3,6 +3,7 @@ package com.cool.movie.controller;
 
 import com.cool.movie.dto.LoginRequest;
 import com.cool.movie.dto.LoginResponse;
+import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.enums.LoginCode;
 import com.cool.movie.service.UserService;
@@ -19,6 +20,12 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @GetMapping(params = {"pageSize", "pageNumber"})
+    public CustomerPage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "6", required = false) Integer pageNumber) {
+        return userService.findByPage(pageSize, pageNumber);
+    }
 
 
     @GetMapping
