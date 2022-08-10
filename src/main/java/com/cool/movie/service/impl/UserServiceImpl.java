@@ -1,10 +1,15 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.dto.LoginRequest;
+import com.cool.movie.dto.login.LoginRequest;
+import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.CustomerMapper;
 import com.cool.movie.repository.UserRepository;
 import com.cool.movie.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +22,10 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserRepository userRepository;
+
+    @Autowired
+    private CustomerMapper customerMapper;
+
 
     /**
      * findById
@@ -119,5 +128,20 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         return request.getPassword().equals(customer.getCustomerPwd());
+    }
+
+    @Override
+    public CustomerPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId, String movieScheduleId) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        Page<Customer> singlePartnerByPage = userRepository.findSinglePartnerByPage(userId, movieScheduleId, pageRequest);
+        CustomerPage customerPage = new CustomerPage(
+            pageSize
+                ,pageNumber
+                ,singlePartnerByPage.getTotalPages()
+                ,(int)singlePartnerByPage.getTotalElements()
+                ,singlePartnerByPage.getNumberOfElements()
+                ,customerMapper.toResponses(singlePartnerByPage.toList())
+        );
+        return customerPage;
     }
 }

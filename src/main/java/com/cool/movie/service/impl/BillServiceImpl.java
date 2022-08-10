@@ -1,6 +1,6 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.dto.BillResponse;
+import com.cool.movie.dto.bill.BillResponse;
 import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.mapper.BillMapper;

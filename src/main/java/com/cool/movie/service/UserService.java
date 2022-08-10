@@ -1,7 +1,8 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.dto.LoginRequest;
+import com.cool.movie.dto.login.LoginRequest;
+import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 
 import java.util.List;
@@ -72,5 +73,7 @@ public interface UserService {
     long count();
 
     Boolean login(LoginRequest request);
+
+    CustomerPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId, String movieScheduleId);
 }
 

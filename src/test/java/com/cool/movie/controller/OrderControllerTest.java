@@ -1,6 +1,7 @@
 package com.cool.movie.controller;
 
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderForPairRequest;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.repository.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -33,11 +34,12 @@ public class OrderControllerTest {
     @Test
     void should_return_order_when_call_post_insert_api_given_order_request() throws Exception {
         //given
-        OrderRequest request = new OrderRequest();
-        request.setMovieId("movieId");
+        OrderForPairRequest request = new OrderForPairRequest();
+        request.setMovieId("1");
         request.setCinemaId("cinemaId");
         request.setUserId("useId");
         request.setMovieScheduleId("movieScheduleId");
+        request.setPartnerId("partnerId");
 
         String requestString = new ObjectMapper().writeValueAsString(request);
 

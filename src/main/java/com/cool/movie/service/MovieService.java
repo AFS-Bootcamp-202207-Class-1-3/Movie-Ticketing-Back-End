@@ -1,7 +1,8 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.dto.moviedto.MoviePage;
+import com.cool.movie.dto.movie.MoviePage;
+import com.cool.movie.dto.movie.MovieResponse;
 import com.cool.movie.entity.Movie;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface MovieService {
      *
      * @param
      */
-    Movie findById(String id);
+    MovieResponse findById(String id);
 
      MoviePage findByPage(Integer pageSize, Integer pageNumber);
 
