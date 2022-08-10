@@ -1,22 +1,24 @@
 package com.cool.movie.service.impl;
 
 
-import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.dto.order.OrderForPairRequest;
-import com.cool.movie.dto.order.OrderRequest;
+import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderPage;
-import com.cool.movie.entity.*;
+import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.entity.MovieSchedule;
+import com.cool.movie.entity.OrderDetail;
+import com.cool.movie.entity.Pair;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.OrderDetailMapper;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.OrderService;
-import com.cool.movie.mapper.OrderDetailMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import com.cool.movie.service.PairService;
 import com.cool.movie.utils.GenerateSeatingUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -184,6 +186,16 @@ public class OrderServiceImpl implements OrderService {
                 ,singlePartnerByPage.getNumberOfElements()
                 ,singlePartnerByPage.toList()
         );
+    }
+
+    @Override
+    public CustomerOrder updateHasPay(String customerOrderId){
+        CustomerOrder customerOrder = orderRepository
+                .findById(customerOrderId)
+                .orElseThrow(()->new NotFoundException(CustomerOrder.class.getSimpleName()));
+        customerOrder.setIsPay(true);
+        orderRepository.save(customerOrder);
+        return customerOrder;
     }
 }
 
