@@ -2,9 +2,7 @@ package com.cool.movie.controller;
 
 
 import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderListResponse;
 import com.cool.movie.dto.OrderRequest;
-import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.dto.orderdto.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
@@ -65,15 +63,6 @@ public class OrderController {
     public void delete(@RequestParam("idList") List<Long> idList) {
 
     }
-
-/*    @GetMapping(value = "/getOrderList",params = {"userId","pageSize", "startPage"})
-    public List<OrderListResponse> getOrderList(
-            @RequestParam(value = "userId", defaultValue = "1") String userId,
-            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-            @RequestParam(value = "startPage",defaultValue = "0") Integer startPage){
-        return orderService.getOrderList(userId,pageSize,startPage);
-    }*/
-
 
     @GetMapping(value = "/getOrderList", params = {"pageSize", "pageNumber", "userId"})
     public OrderPage selectByPage(@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
