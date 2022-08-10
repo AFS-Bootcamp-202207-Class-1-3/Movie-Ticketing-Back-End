@@ -1,16 +1,22 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.advice.GlobalExceptionAdvice;
+
+import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderRequest;
-import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
+import com.cool.movie.service.MovieScheduleService;
+import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
+import com.cool.movie.service.UserService;
+import com.cool.movie.mapper.OrderDetailMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -27,14 +33,28 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderRepository orderRepository;
 
+
+
+    @Resource
+    private OrderDetailViewRepository orderDetailViewRepository;
+
+    @Resource
+    OrderDetailMapper orderDetailMapper;
+
+
+    public OrderDetailResponse getOrderDetailResponse(Serializable id) {
+        OrderDetail orderDetail = orderDetailViewRepository.findById(String.valueOf(id)).orElseThrow(() -> new NotFoundException(OrderDetail.class.getSimpleName()));
+        return orderDetailMapper.toResponse(orderDetail);
+    }
+
     /**
      * findById
      *
      * @param id
      */
     @Override
-    public Optional<CustomerOrder> findById(String id) {
-        return Optional.ofNullable(orderRepository.findById(id).orElseThrow(() -> new NotFoundException(CustomerOrder.class.getSimpleName())));
+    public CustomerOrder findById(String id) {
+        return orderRepository.findById(id).orElseThrow(() -> new NotFoundException(CustomerOrder.class.getSimpleName()));
     }
 
     /**
@@ -55,8 +75,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public CustomerOrder save(OrderRequest request) {
         CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
-                Math.random() * 100, false, request.getMovieScheduleId(), false,
+                Math.random() * 100, request.getCinemaId(),false, request.getMovieScheduleId(), false,
                 generateRandomTicketCode(15), request.getUserId());
+        return orderRepository.save(order);
+    }
+
+    @Override
+    public CustomerOrder save(CustomerOrder customerOrder) {
+        CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), customerOrder.getMovieId(),
+                Math.random() * 100, customerOrder.getCinemaId(),false, customerOrder.getMovieScheduleId(), false,
+                generateRandomTicketCode(15), customerOrder.getUserId());
         return orderRepository.save(order);
     }
 
@@ -118,6 +146,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public long count() {
         return orderRepository.count();
+    }
+
+    @Override
+    public CustomerOrder getSameViewingTime(OrderRequest orderRequest) {
+        return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(orderRequest.getMovieScheduleId(),orderRequest.getCinemaId(),orderRequest.getUserId());
     }
 
     private String generateRandomTicketCode(int length) {

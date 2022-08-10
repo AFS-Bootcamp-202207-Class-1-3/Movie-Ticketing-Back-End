@@ -4,7 +4,6 @@ package com.cool.movie.service;
 import com.cool.movie.entity.Pay;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface PayService {
@@ -14,7 +13,7 @@ public interface PayService {
      *
      * @param id
      */
-    Optional<Pay> findById(String id);
+    Pay findById(String id);
 
     /**
      * findByParam
@@ -35,6 +34,7 @@ public interface PayService {
      *
      * @param pays
      */
+    Pay save(Pay pays);
     List<Pay> save(List<Pay> pays);
 
     /**

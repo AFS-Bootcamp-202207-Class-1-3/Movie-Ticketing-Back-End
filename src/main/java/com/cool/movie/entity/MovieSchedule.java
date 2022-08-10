@@ -1,6 +1,8 @@
 package com.cool.movie.entity;
 
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -8,10 +10,10 @@ import java.util.Date;
 
 
 @Entity
+@Data
 public class MovieSchedule implements Serializable {
 
     private static final long serialVersionUID = 140755435576497910L;
-
 
 
     @Id
@@ -37,68 +39,5 @@ public class MovieSchedule implements Serializable {
 
     private String room;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(String cinemaId) {
-        this.cinemaId = cinemaId;
-    }
-
-    public String getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public Integer getAvailablePosition() {
-        return availablePosition;
-    }
-
-    public void setAvailablePosition(Integer availablePosition) {
-        this.availablePosition = availablePosition;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
 }
 

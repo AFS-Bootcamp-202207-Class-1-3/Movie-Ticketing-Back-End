@@ -4,7 +4,6 @@ package com.cool.movie.service;
 import com.cool.movie.entity.MovieType;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MovieTypeService {
 
@@ -13,7 +12,7 @@ public interface MovieTypeService {
      *
      * @param
      */
-    Optional<MovieType> findById(String id);
+    MovieType findById(String id);
 
     /**
      * findByParam

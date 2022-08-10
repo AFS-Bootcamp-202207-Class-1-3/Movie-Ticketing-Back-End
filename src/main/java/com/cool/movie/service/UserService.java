@@ -1,10 +1,10 @@
 package com.cool.movie.service;
 
 
+import com.cool.movie.dto.LoginRequest;
 import com.cool.movie.entity.Customer;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface UserService {
@@ -14,7 +14,7 @@ public interface UserService {
      *
      * @param
      */
-    Optional<Customer> findById(String id);
+    Customer findById(String id);
 
     /**
      * findByParam
@@ -59,6 +59,8 @@ public interface UserService {
      */
     boolean existsById(String id);
 
+    Customer findByRealName(String realName);
+
     /**
      * findAll
      */
@@ -68,5 +70,7 @@ public interface UserService {
      * count
      */
     long count();
+
+    Boolean login(LoginRequest request);
 }
 

@@ -1,0 +1,1 @@
+alter table customer_order add column cinema_id varchar(255) DEFAULT '1';

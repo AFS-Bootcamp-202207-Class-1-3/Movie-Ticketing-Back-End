@@ -1,5 +1,4 @@
 package com.cool.movie.service.impl;
-
 import com.cool.movie.entity.MovieSchedule;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.MovieScheduleRepository;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * (MovieSchedule)
@@ -29,8 +27,8 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
      * @param id
      */
     @Override
-    public Optional<MovieSchedule> findById(String id) {
-        return Optional.ofNullable(movieScheduleRepository.findById(id).orElseThrow(() -> new NotFoundException("MovieSchedule")));
+    public MovieSchedule findById(String id) {
+        return movieScheduleRepository.findById(id).orElseThrow(() -> new NotFoundException(MovieSchedule.class.getSimpleName()));
     }
 
     /**
@@ -112,5 +110,18 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
     public long count() {
         return movieScheduleRepository.count();
     }
+
+
+
+    /**
+     * findByParam
+     *
+     * @param cinemaId
+     */
+    @Override
+    public List<MovieSchedule> findMovieSchedulesByCinemaId(String cinemaId) {
+        return movieScheduleRepository.getMovieSchedulesByCinemaId(cinemaId);
+    }
+
 }
 
