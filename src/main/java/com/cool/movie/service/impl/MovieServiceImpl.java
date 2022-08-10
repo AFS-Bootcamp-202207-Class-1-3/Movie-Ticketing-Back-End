@@ -49,7 +49,7 @@ public class MovieServiceImpl implements MovieService {
                 , pageNumber
                 , moviesFind.getTotalPages()
                 , (int) moviesFind.getTotalElements()
-                , (int) moviesFind.getNumberOfElements()
+                , moviesFind.getNumberOfElements()
                 , movieMapper.toResponses(moviesFind.toList()));
 
         return moviePage;

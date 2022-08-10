@@ -29,8 +29,8 @@ public class MovieController {
     }
 
     @GetMapping(params = {"pageSize", "pageNumber"})
-    public MoviePage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize
-            , @RequestParam(value = "pageNumber", defaultValue = "6") Integer pageNumber) {
+    public MoviePage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "6", required = false) Integer pageNumber) {
         return movieService.findByPage(pageSize, pageNumber);
     }
 
