@@ -27,5 +27,14 @@ public class Pay implements Serializable {
 
     private Integer status;
 
+    public Pay(String id, String ordersIds, Double totalPrice, Integer status) {
+        this.id = id;
+        this.ordersIds = ordersIds;
+        this.totalPrice = totalPrice;
+        this.status = status;
+    }
+
+    public Pay() {
+    }
 }
 
