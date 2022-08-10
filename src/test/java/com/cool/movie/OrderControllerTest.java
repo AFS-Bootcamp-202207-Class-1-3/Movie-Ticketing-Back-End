@@ -1,5 +1,6 @@
 package com.cool.movie;
 
+import com.cool.movie.dto.OrderListResponse;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.repository.OrderRepository;
@@ -15,13 +16,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.hasSize;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 public class OrderControllerTest {
 
     @Autowired
@@ -38,6 +40,29 @@ public class OrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/order/sssssssss"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
+    @Test
+    public void should_return_bool_when_get_viewingTime_given_orderRequest() throws Exception {
+        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
+        String newCustomerOrder = "    {\n" +
+                "        \"id\": \"1\",\n" +
+                "        \"movieId\": \"1\",\n" +
+                "        \"price\": \"10.0\",\n" +
+                "        \"cinemaId\": \"1111\",\n" +
+                "        \"isPay\":\"false\",\n" +
+                "        \"movieScheduleId\":\"1\",\n" +
+                "        \"hasUsed\": \"false\",\n" +
+                "        \"ticketCode\": \"123456\",\n" +
+                "        \"userId\": \"1\"\n" +
+                "    }";
+        //when &then
+        mockMvc.perform(MockMvcRequestBuilders.post("/order/viewingTime", newCustomerOrder)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(newCustomerOrder))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$").value(false));
+    }
+
 
 
 }

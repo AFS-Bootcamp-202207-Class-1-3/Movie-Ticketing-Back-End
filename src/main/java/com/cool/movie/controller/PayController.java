@@ -34,7 +34,6 @@ public class PayController {
     public void insert(@RequestBody Pay pay) {
         Pay savePay = new Pay(UUID.randomUUID().toString(),pay.getOrdersIds(),pay.getTotalPrice(),pay.getStatus());
         payService.save(savePay);
-
     }
 
 

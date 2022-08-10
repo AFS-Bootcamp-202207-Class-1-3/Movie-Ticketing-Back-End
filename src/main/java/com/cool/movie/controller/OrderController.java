@@ -5,9 +5,11 @@ import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.persistence.NonUniqueResultException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -44,18 +46,16 @@ public class OrderController {
     }
 
     @PostMapping("/viewingTime")
-    public String isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
+    public Boolean isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
         CustomerOrder sameViewingTime = orderService.getSameViewingTime(orderRequest);
-        CustomerOrder saveCustomerOrder = new CustomerOrder();
-        saveCustomerOrder.setCinemaId(orderRequest.getCinemaId());
-        saveCustomerOrder.setMovieScheduleId(orderRequest.getMovieScheduleId());
-        saveCustomerOrder.setUserId(orderRequest.getUserId());
-        saveCustomerOrder.setMovieId(orderRequest.getMovieId());
-        if (sameViewingTime==null||sameViewingTime.equals("")){
-            CustomerOrder save = orderService.save(saveCustomerOrder);
-            return save.getId();
-        }else{
-            return sameViewingTime.getId();
+        try{
+            if (sameViewingTime==null||sameViewingTime.equals("")){
+                return false;
+            }else{
+                return true;
+            }
+        }catch (NonUniqueResultException e){
+            return true;
         }
     }
 
@@ -63,5 +63,6 @@ public class OrderController {
     public void delete(@RequestParam("idList") List<Long> idList) {
 
     }
+
 }
 
