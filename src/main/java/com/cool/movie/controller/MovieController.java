@@ -2,6 +2,7 @@ package com.cool.movie.controller;
 
 
 import com.cool.movie.dto.moviedto.MoviePage;
+import com.cool.movie.dto.moviedto.MovieResponse;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.service.MovieService;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class MovieController {
 
 
     @GetMapping("{id}")
-    public Movie selectOne(@PathVariable String id) {
+    public MovieResponse selectOne(@PathVariable String id) {
         return movieService.findById(id);
     }
 
