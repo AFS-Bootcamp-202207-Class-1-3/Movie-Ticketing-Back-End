@@ -3,6 +3,7 @@ package com.cool.movie.controller;
 
 import com.cool.movie.dto.LoginRequest;
 import com.cool.movie.dto.LoginResponse;
+import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.enums.LoginCode;
 import com.cool.movie.service.UserService;
@@ -19,6 +20,14 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @GetMapping(params = {"pageSize", "pageNumber", "userId", "movieScheduleId"})
+    public CustomerPage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "6", required = false) Integer pageNumber
+            , @RequestParam(value = "userId") String userId
+    ,@RequestParam(value = "movieScheduleId") String movieScheduleId) {
+        return userService.findSingleByPage(pageSize, pageNumber, userId, movieScheduleId);
+    }
 
 
     @GetMapping
@@ -57,7 +66,7 @@ public class UserController {
                 ? new LoginResponse(LoginCode.SUCCESS.getCode(), LoginCode.SUCCESS.getMessage(), customer.getId(),
                 customer.getRealName(), customer.getNickName(), customer.getAvatarUrl(), customer.getAge(),
                 customer.getGender(), customer.getPhoneNumber(), customer.getCity(), customer.getIntroduction())
-                :  new LoginResponse(LoginCode.FAILED.getCode(), LoginCode.FAILED.getMessage());
+                : new LoginResponse(LoginCode.FAILED.getCode(), LoginCode.FAILED.getMessage());
     }
 }
 
