@@ -1,7 +1,9 @@
 package com.cool.movie;
 
+import com.cool.movie.dto.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.repository.OrderRepository;
+import com.cool.movie.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,6 +28,9 @@ public class OrderControllerTest {
     private OrderRepository orderRepository;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     MockMvc mockMvc;
 
     @Test
@@ -34,21 +39,5 @@ public class OrderControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
-
-    @Test
-    public void should_return_customer_order_when_getSameViewingTime_given_orderRequest() throws Exception{
-        //given
-        String orderRequest = "    {\n" +
-                "        \"userId\": \"1\",\n" +
-                "        \"cinemaId\": \"10\",\n" +
-                "        \"movieScheduleId\": \"11\"\n" +
-                "    }";
-        //when &then
-        mockMvc.perform(MockMvcRequestBuilders.get("/order/viewingTime")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(orderRequest))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$").value("false"));
-    }
 
 }
