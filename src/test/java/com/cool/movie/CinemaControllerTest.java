@@ -1,7 +1,6 @@
 package com.cool.movie;
 
 import com.cool.movie.repository.CinemaRepository;
-import com.cool.movie.repository.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
