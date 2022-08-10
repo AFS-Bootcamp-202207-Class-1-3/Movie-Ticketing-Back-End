@@ -1,4 +1,4 @@
-package com.cool.movie.dto.moviedto;
+package com.cool.movie.dto.movie;
 
 import lombok.Builder;
 import lombok.Data;

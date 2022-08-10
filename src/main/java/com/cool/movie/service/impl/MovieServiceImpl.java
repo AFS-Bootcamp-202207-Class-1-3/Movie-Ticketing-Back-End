@@ -1,7 +1,7 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.dto.moviedto.MoviePage;
-import com.cool.movie.dto.moviedto.MovieResponse;
+import com.cool.movie.dto.movie.MoviePage;
+import com.cool.movie.dto.movie.MovieResponse;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.mapper.MovieMapper;

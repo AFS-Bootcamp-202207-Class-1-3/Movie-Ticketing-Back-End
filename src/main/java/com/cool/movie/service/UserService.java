@@ -1,7 +1,7 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.dto.LoginRequest;
+import com.cool.movie.dto.login.LoginRequest;
 import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 
