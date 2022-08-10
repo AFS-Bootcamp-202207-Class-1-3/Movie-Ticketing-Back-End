@@ -51,7 +51,6 @@ public class MovieServiceImpl implements MovieService {
                 , (int) moviesFind.getTotalElements()
                 , moviesFind.getNumberOfElements()
                 , movieMapper.toResponses(moviesFind.toList()));
-
         return moviePage;
     }
 

@@ -17,4 +17,13 @@ public class CustomerPage {
     private Integer CustomerCount;
 
     private List<CustomerResponse> customerResponses;
+
+    public CustomerPage(Integer pageSize, Integer pageNumber, Integer totalPages, Integer totalCustomers, Integer customerCount, List<CustomerResponse> customerResponses) {
+        this.pageSize = pageSize;
+        this.pageNumber = pageNumber;
+        this.totalPages = totalPages;
+        this.totalCustomers = totalCustomers;
+        CustomerCount = customerCount;
+        this.customerResponses = customerResponses;
+    }
 }
