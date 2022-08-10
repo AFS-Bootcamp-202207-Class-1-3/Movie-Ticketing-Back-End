@@ -1,7 +1,7 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.dto.MovieScheduleResponse;
+import com.cool.movie.dto.movieschedule.MovieScheduleResponse;
 import com.cool.movie.entity.MovieSchedule;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.utils.CopyListMapper;

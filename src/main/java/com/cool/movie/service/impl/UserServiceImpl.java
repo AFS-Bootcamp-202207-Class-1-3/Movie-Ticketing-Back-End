@@ -1,6 +1,6 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.dto.LoginRequest;
+import com.cool.movie.dto.login.LoginRequest;
 import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.exception.NotFoundException;

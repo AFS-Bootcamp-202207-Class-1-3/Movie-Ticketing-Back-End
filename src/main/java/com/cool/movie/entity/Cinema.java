@@ -19,5 +19,13 @@ public class Cinema implements Serializable {
     private String name;
     private String location;
 
+    public Cinema() {
+    }
+
+    public Cinema(String id, String name, String location) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+    }
 }
 

@@ -1,8 +1,6 @@
 package com.cool.movie;
 
-import com.cool.movie.dto.OrderListResponse;
-import com.cool.movie.dto.OrderRequest;
-import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.OrderService;
 import org.junit.jupiter.api.Test;
@@ -10,14 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.hasSize;
 
