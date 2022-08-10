@@ -1,7 +1,7 @@
 package com.cool.movie.repository;
 
 
-import com.cool.movie.dto.order.OrderListResponse;
+import com.cool.movie.dto.OrderListResponse;
 import com.cool.movie.entity.CustomerOrder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

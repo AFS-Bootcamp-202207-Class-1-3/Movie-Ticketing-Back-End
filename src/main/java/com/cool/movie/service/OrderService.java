@@ -1,10 +1,9 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.dto.OrderDetailResponse;
 import com.cool.movie.dto.OrderListResponse;
-import com.cool.movie.dto.OrderRequest;
-import com.cool.movie.dto.customerdto.CustomerPage;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.dto.orderdto.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 
@@ -78,5 +77,6 @@ public interface OrderService {
     CustomerOrder getSameViewingTime(OrderRequest orderRequest);
 
     OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId);
+
 }
 

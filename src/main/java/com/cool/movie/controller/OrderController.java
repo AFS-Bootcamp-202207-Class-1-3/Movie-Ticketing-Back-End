@@ -1,8 +1,6 @@
 package com.cool.movie.controller;
-
-
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.dto.orderdto.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
@@ -70,6 +68,7 @@ public class OrderController {
             , @RequestParam(value = "userId") String userId) {
         return orderService.findSingleByPage(pageSize, pageNumber, userId);
     }
+
 
 
 }

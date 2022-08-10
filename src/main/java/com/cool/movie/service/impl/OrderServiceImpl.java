@@ -1,15 +1,18 @@
 package com.cool.movie.service.impl;
 
 
+import com.cool.movie.dto.OrderListResponse;
 import com.cool.movie.dto.order.OrderDetailResponse;
-import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderRequest;
+import com.cool.movie.dto.orderdto.OrderPage;
 import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.mapper.OrderDetailMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -148,12 +151,6 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(orderRequest.getMovieScheduleId(),orderRequest.getCinemaId(),orderRequest.getUserId());
     }
 
-    @Override
-    public List<OrderListResponse> getOrderList(String userId, Integer pageSize, Integer startPage) {
-        Integer result = (startPage - 1) * pageSize;
-        return orderRepository.getOrderByUserIdAndByPage(userId,pageSize,result);
-    }
-
     private String generateRandomTicketCode(int length) {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random = new Random();
@@ -163,6 +160,21 @@ public class OrderServiceImpl implements OrderService {
             ticketCodeStringBuffer.append(str.charAt(number));
         }
         return ticketCodeStringBuffer.toString();
+    }
+
+    @Override
+    public OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        Page<OrderListResponse> singlePartnerByPage = orderRepository.getOrderByUserIdAndByPage(userId, pageRequest);
+        OrderPage orderPage = new OrderPage(
+                pageSize
+                ,pageNumber
+                ,singlePartnerByPage.getTotalPages()
+                ,(int)singlePartnerByPage.getTotalElements()
+                ,singlePartnerByPage.getNumberOfElements()
+                ,singlePartnerByPage.toList()
+        );
+        return orderPage;
     }
 }
 
