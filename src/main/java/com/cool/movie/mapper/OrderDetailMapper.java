@@ -1,10 +1,8 @@
 package com.cool.movie.mapper;
 
-import com.cool.movie.dto.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.entity.*;
 import org.springframework.stereotype.Component;
-
-import java.text.MessageFormat;
 
 @Component
 public class OrderDetailMapper {

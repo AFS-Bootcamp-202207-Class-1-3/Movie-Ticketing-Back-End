@@ -1,23 +1,19 @@
 package com.cool.movie.service.impl;
 
 
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderListResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderListResponse;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
-import com.cool.movie.service.MovieScheduleService;
-import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
-import com.cool.movie.service.UserService;
 import com.cool.movie.mapper.OrderDetailMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;

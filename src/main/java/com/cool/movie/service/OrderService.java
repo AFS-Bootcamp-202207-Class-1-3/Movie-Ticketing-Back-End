@@ -1,9 +1,9 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderListResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderListResponse;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 
 import java.io.Serializable;

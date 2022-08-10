@@ -1,7 +1,7 @@
 package com.cool.movie.mapper;
 
 
-import com.cool.movie.dto.moviedto.MovieResponse;
+import com.cool.movie.dto.movie.MovieResponse;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.utils.DateUtils;
 import org.springframework.stereotype.Component;

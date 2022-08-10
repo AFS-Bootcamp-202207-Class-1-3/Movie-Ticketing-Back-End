@@ -1,6 +1,6 @@
 package com.cool.movie.controller;
 
-import com.cool.movie.dto.BillResponse;
+import com.cool.movie.dto.bill.BillResponse;
 import com.cool.movie.service.BillService;
 import org.springframework.web.bind.annotation.*;
 

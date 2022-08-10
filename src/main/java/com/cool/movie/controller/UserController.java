@@ -1,8 +1,8 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.dto.LoginRequest;
-import com.cool.movie.dto.LoginResponse;
+import com.cool.movie.dto.login.LoginRequest;
+import com.cool.movie.dto.login.LoginResponse;
 import com.cool.movie.dto.customerdto.CustomerPage;
 import com.cool.movie.entity.Customer;
 import com.cool.movie.enums.LoginCode;

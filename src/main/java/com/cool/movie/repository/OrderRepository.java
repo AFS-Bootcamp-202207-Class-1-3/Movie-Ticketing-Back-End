@@ -1,14 +1,12 @@
 package com.cool.movie.repository;
 
 
-import com.cool.movie.dto.OrderListResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.entity.CustomerOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.util.List;
 
 

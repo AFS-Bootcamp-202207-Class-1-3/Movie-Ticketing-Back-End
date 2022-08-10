@@ -1,8 +1,8 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.dto.moviedto.MoviePage;
-import com.cool.movie.dto.moviedto.MovieResponse;
+import com.cool.movie.dto.movie.MoviePage;
+import com.cool.movie.dto.movie.MovieResponse;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.service.MovieService;
 import org.springframework.web.bind.annotation.*;

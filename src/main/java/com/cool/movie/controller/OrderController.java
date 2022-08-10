@@ -1,12 +1,11 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderListResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderListResponse;
+import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
