@@ -51,5 +51,4 @@ public class CustomerOrder implements Serializable {
 
     public CustomerOrder() {
     }
-
 }

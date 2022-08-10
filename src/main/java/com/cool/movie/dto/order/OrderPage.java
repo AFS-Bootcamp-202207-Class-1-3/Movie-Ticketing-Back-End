@@ -1,6 +1,6 @@
-package com.cool.movie.dto.orderdto;
+package com.cool.movie.dto.order;
 
-import com.cool.movie.dto.OrderListResponse;
+import com.cool.movie.dto.order.OrderListResponse;
 import lombok.Data;
 
 import java.util.List;

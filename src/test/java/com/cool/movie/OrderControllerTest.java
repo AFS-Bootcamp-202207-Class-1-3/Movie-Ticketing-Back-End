@@ -1,5 +1,6 @@
 package com.cool.movie;
 
+import com.cool.movie.dto.order.OrderForPairRequest;
 import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.OrderService;
@@ -37,7 +38,7 @@ public class OrderControllerTest {
     @Test
     public void should_return_bool_when_get_viewingTime_given_orderRequest() throws Exception {
 
-        orderService.save(new OrderRequest("1","1","122","1"));
+        orderService.save(new OrderForPairRequest("1","1","122","1","2"));
         String newCustomerOrder = "    {\n" +
                 "        \"id\": \"1\",\n" +
                 "        \"userId\": \"1\",\n" +
@@ -46,8 +47,8 @@ public class OrderControllerTest {
                 "    }";
         //when &then
         mockMvc.perform(MockMvcRequestBuilders.post("/order/viewingTime", newCustomerOrder)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(newCustomerOrder))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(newCustomerOrder))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value(true));
     }

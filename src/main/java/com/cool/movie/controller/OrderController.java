@@ -3,7 +3,7 @@ import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.dto.order.OrderForPairRequest;
 import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderRequest;
-import com.cool.movie.dto.orderdto.OrderPage;
+import com.cool.movie.dto.order.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +46,8 @@ public class OrderController {
     }
 
     @PostMapping("/viewingTime")
-    public Boolean isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
-        CustomerOrder sameViewingTime = orderService.getSameViewingTime(orderRequest);
+    public Boolean isExistSameViewingTime(@RequestBody OrderForPairRequest request){
+        CustomerOrder sameViewingTime = orderService.getSameViewingTime(request);
         try{
             if (sameViewingTime==null||sameViewingTime.equals("")){
                 return false;
