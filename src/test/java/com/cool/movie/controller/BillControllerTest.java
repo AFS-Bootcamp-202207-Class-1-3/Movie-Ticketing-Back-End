@@ -29,7 +29,7 @@ public class BillControllerTest {
         client.perform(MockMvcRequestBuilders.get("/bills/{id}", testId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.cinemaName").value("cinema-1"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.movieName").value("my_movie"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.movieName").value("movie-1"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(500))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.ticketCode").value("123456"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.partnerName").value("name-1"))
