@@ -35,13 +35,6 @@ public interface OrderService {
     CustomerOrder save(OrderRequest orderRequest);
 
     /**
-     * save one
-     *
-     * @param customerOrder
-     */
-    CustomerOrder save(CustomerOrder customerOrder);
-
-    /**
      * save
      *
      * @param customerOrders

@@ -74,21 +74,18 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param request
      */
+    //查MovieSchedule的price
     @Override
     public CustomerOrder save(OrderRequest request) {
+
+
         CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
                 Math.random() * 100, request.getCinemaId(),false, request.getMovieScheduleId(), false,
                 generateRandomTicketCode(15), request.getUserId());
         return orderRepository.save(order);
     }
 
-    @Override
-    public CustomerOrder save(CustomerOrder customerOrder) {
-        CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), customerOrder.getMovieId(),
-                Math.random() * 100, customerOrder.getCinemaId(),false, customerOrder.getMovieScheduleId(), false,
-                generateRandomTicketCode(15), customerOrder.getUserId());
-        return orderRepository.save(order);
-    }
+
 
     /**
      * save

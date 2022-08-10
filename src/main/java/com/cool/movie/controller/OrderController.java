@@ -70,7 +70,6 @@ public class OrderController {
             @RequestParam(value = "userId", defaultValue = "1") String userId,
             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
             @RequestParam(value = "startPage",defaultValue = "0") Integer startPage){
-        System.out.println(userId + " " + pageSize + " " + startPage);
         return orderService.getOrderList(userId,pageSize,startPage);
     }
 

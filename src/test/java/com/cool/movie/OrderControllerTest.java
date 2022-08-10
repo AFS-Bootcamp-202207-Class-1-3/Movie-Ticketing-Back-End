@@ -43,46 +43,22 @@ public class OrderControllerTest {
 
     @Test
     public void should_return_bool_when_get_viewingTime_given_orderRequest() throws Exception {
-        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
+
+        orderService.save(new OrderRequest("1","1","122","1"));
         String newCustomerOrder = "    {\n" +
                 "        \"id\": \"1\",\n" +
-                "        \"movieId\": \"1\",\n" +
-                "        \"price\": \"10.0\",\n" +
-                "        \"cinemaId\": \"1111\",\n" +
-                "        \"isPay\":\"false\",\n" +
-                "        \"movieScheduleId\":\"1\",\n" +
-                "        \"hasUsed\": \"false\",\n" +
-                "        \"ticketCode\": \"123456\",\n" +
-                "        \"userId\": \"1\"\n" +
+                "        \"userId\": \"1\",\n" +
+                "        \"movieScheduleId\": \"122\",\n" +
+                "        \"cinemaId\": \"1\"\n" +
                 "    }";
         //when &then
         mockMvc.perform(MockMvcRequestBuilders.post("/order/viewingTime", newCustomerOrder)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(newCustomerOrder))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$").value(false));
+                .andExpect(MockMvcResultMatchers.jsonPath("$").value(true));
     }
 
-/*    @Test
-    public void testOrder() {
-        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
-        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
-        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
-        orderService.save(new CustomerOrder("1","1",10.0,false,"1",false,"123456", "1"));
-        String pageSize = "5";
-        String startPage = "1";
-        Integer result = (Integer.parseInt(startPage) - 1) * Integer.parseInt(pageSize);
-        List<OrderListResponse> orderByUserIdAndByPage = orderRepository.getOrderByUserIdAndByPage("1",pageSize, String.valueOf(result));
-        for (OrderListResponse o : orderByUserIdAndByPage) {
-            System.out.println("--------------");
-            System.out.println(o.getName());
-            System.out.println(o.getIsPay());
-            System.out.println(o.getId());
-            System.out.println(o.getPrice());
-            System.out.println(o.getStartTime());
-            System.out.println("--------------");
-        }
-    }*/
 
     @Test
     public void should_return_orderListResponses_when_get_getOrderList_given_userId_startPage_pageSize() throws Exception {
@@ -94,6 +70,9 @@ public class OrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/order/getOrderList?userId={userId}&pageSize={pageSize}&startPage={startPage}", userId,pageSize, startPage))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("10"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].startTime").value("2022-08-10"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].price").value("6600.0"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].isPay").value("true"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("movie-10"));
     }
 
