@@ -2,10 +2,12 @@ package com.cool.movie.dto.movie;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class MovieWithMessagePage extends MoviePage{
 
     // 搜索信息

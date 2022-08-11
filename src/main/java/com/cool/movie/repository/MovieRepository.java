@@ -12,10 +12,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, String> {
     @Query(
-            value = "?1",
-            countQuery = "?2",
+            value = "select * from movie where name like %?1%",
+            countQuery = "select count(*) from movie where name like %?1%",
             nativeQuery = true
     )
-    Page<Movie> movieWithMessagePage(String sql, String countSql, Pageable pageable);
+    Page<Movie> movieWithMessagePage(String searchMessage, Pageable pageable);
 }
 

@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,10 @@ public class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieMapper movieMapper;
+
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private static final String REGEX = "\\s+";
 
@@ -148,7 +154,15 @@ public class MovieServiceImpl implements MovieService {
         String searchSql = getSql(searchMessage);
         String countSql=getCountSql(searchMessage);
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
-        Page<Movie> movies = movieRepository.movieWithMessagePage(searchSql,countSql, pageRequest);
+//        Query query = entityManager.createNativeQuery(searchSql, Movie.class);
+//        List<Movie> resultList = query.getResultList();
+//        List<String> ids = resultList.stream().map(result -> {
+//            return result.getId();
+//        }).collect(Collectors.toList());
+
+        Page<Movie> movies = movieRepository.movieWithMessagePage(searchMessage, pageRequest);
+
+
         MovieWithMessagePage movieWithMessagePage = new MovieWithMessagePage(
                 pageSize,
                 pageNumber,
@@ -160,39 +174,42 @@ public class MovieServiceImpl implements MovieService {
                         .collect(Collectors.toList()),
                 searchMessage
         );
+
         return movieWithMessagePage;
     }
+
+
 
     private String getSql(String searchMessage) {
         String sql = "select * from movie where ";
         if (searchMessage == null || searchMessage.length() == 0) {
-            return sql + "1=2;";
+            return sql + "1=2";
         }
         String[] conditions = searchMessage.split(REGEX);
 
         for (int i = 0; i < conditions.length; i++) {
-            sql += "name like %" + conditions[i] + "%";
+            sql += "name like '%" + conditions[i] + "%'";
             if (i != conditions.length - 1) {
                 sql += " or ";
             }
         }
-        return sql + ";";
+        return sql;
     }
 
     private String getCountSql(String searchMessage) {
         String sql = "select count(*) from movie where ";
         if (searchMessage == null || searchMessage.length() == 0) {
-            return sql + "1=2;";
+            return sql + "1=2";
         }
         String[] conditions = searchMessage.split(REGEX);
 
         for (int i = 0; i < conditions.length; i++) {
-            sql += "name like %" + conditions[i] + "%";
+            sql += "name like '%" + conditions[i] + "%'";
             if (i != conditions.length - 1) {
                 sql += " or ";
             }
         }
-        return sql + ";";
+        return sql;
     }
 
 
