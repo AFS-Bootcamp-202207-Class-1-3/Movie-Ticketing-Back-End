@@ -29,8 +29,8 @@ VALUES ('14','七人乐队','七位导演自上世纪五十年代一直到当下
 INSERT INTO public.movie (id,"name",introduction,duration,release_time,post_url,"types")
 VALUES ('15','外太空的莫扎特','任大望（黄渤 饰）一心想把喜好天文的儿子任小天（荣梓杉 饰）培养成钢琴演奏家，为此父子争吵不断。一天，神秘外星人莫扎特意外出现，从此，莫扎特帮助任小天开启了和爸爸“斗智斗勇”的生活。令任小天没有想到的是，莫扎特来到地球竟另有任务……',136,'2022-07-15','https://p0.pipi.cn/mmdb/25bfd6d7f2a8078ea3d7c304dc0f9d848c001.jpg?imageView2/1/w/464/h/644','奇幻 喜剧 家庭');
 INSERT INTO public.movie (id,"name",introduction,duration,release_time,post_url,"types")
-VALUES ('16','盗梦空间','《盗梦空间》是由克里斯托弗·诺兰执导，莱昂纳多·迪卡普里奥，玛丽昂·歌迪亚等主演的电影。影片剧情游走于梦境与现实之间，被定义为“发生在意识结构内的当代动作科幻片”。影片讲述由莱昂纳多·迪卡普里奥扮演的造梦师，带领约瑟夫·高登-莱维特、艾伦·佩吉扮演的特工团队，进入他人梦境，从他人的潜意识中盗取机密，并重塑他人梦境的故事。该片于2020年8月12日起在全球重映。',148,'2022-07-30','https://bkimg.cdn.bcebos.com/pic/ac345982b2b7d0a26e5d3912cdef76094a369aac?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5/format,f_auto','动作、悬疑、惊悚、科幻');
+VALUES ('16','盗梦空间','《盗梦空间》是由克里斯托弗·诺兰执导，莱昂纳多·迪卡普里奥，玛丽昂·歌迪亚等主演的电影。影片剧情游走于梦境与现实之间，被定义为“发生在意识结构内的当代动作科幻片”。影片讲述由莱昂纳多·迪卡普里奥扮演的造梦师，带领约瑟夫·高登-莱维特、艾伦·佩吉扮演的特工团队，进入他人梦境，从他人的潜意识中盗取机密，并重塑他人梦境的故事。该片于2020年8月12日起在全球重映。',148,'2022-07-30','https://p0.pipi.cn/mmdb/d2dad592c7e7e18ea3ddd25c429b5fa55d0c4.jpg?imageView2/1/w/464/h/644','动作、悬疑、惊悚、科幻');
 INSERT INTO public.movie (id,"name",introduction,duration,release_time,post_url,"types")
-VALUES ('17','蜘蛛侠3','蜘蛛侠（托比•马奎尔 Tobey Maguire 饰）在经历了重重考验之后，成为了人人敬仰的正义英雄，抱得美人归。但是，光环下蜘蛛侠，也有自己的心病：他在第一集时放走了小偷导致最亲爱的叔叔被小偷杀死，帕克一直耿耿于怀。',139,'2022-09-01','https://img1.doubanio.com/view/photo/l/public/p1344981868.webp','动作 科幻  冒险');
+VALUES ('17','蜘蛛侠3','蜘蛛侠（托比•马奎尔 Tobey Maguire 饰）在经历了重重考验之后，成为了人人敬仰的正义英雄，抱得美人归。但是，光环下蜘蛛侠，也有自己的心病：他在第一集时放走了小偷导致最亲爱的叔叔被小偷杀死，帕克一直耿耿于怀。',139,'2022-09-01','https://p0.pipi.cn/mmdb/d2dad592c7e7e111e57df5e62d1a2879ede85.jpg?imageView2/1/w/464/h/644','动作 科幻  冒险');
 INSERT INTO public.movie (id,"name",introduction,duration,release_time,post_url,"types")
-VALUES ('18','星际穿越','近未来的地球黄沙遍野，小麦、秋葵等基础农作物相继因枯萎病灭绝，人类不再像从前那样仰望星空，放纵想象力和灵感的迸发，而是每日在沙尘暴的肆虐下倒数着所剩不多的光景。',169,'2022-08-02','https://img1.doubanio.com/view/photo/l/public/p2614988097.webp','科幻');
+VALUES ('18','星际穿越','近未来的地球黄沙遍野，小麦、秋葵等基础农作物相继因枯萎病灭绝，人类不再像从前那样仰望星空，放纵想象力和灵感的迸发，而是每日在沙尘暴的肆虐下倒数着所剩不多的光景。',169,'2022-08-02','https://p0.pipi.cn/mmdb/d2dad592b125bfc9fd300b8a46169f8008efb.jpg?imageView2/1/w/464/h/644','科幻');
