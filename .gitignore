@@ -16,7 +16,6 @@
 *.iws
 *.iml
 *.ipr
-*.yml
 /out/
 
 ### NetBeans ###
@@ -28,5 +27,4 @@
 docs/gradle-getting-started
 docs/tmp
 .vscode/
-*.yml
 
