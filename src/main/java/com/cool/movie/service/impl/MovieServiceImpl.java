@@ -1,6 +1,7 @@
 package com.cool.movie.service.impl;
 
-import com.cool.movie.dto.moviedto.MoviePage;
+import com.cool.movie.dto.movie.MoviePage;
+import com.cool.movie.dto.movie.MovieResponse;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.mapper.MovieMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * (Movie)
@@ -36,8 +38,9 @@ public class MovieServiceImpl implements MovieService {
      * @param id
      */
     @Override
-    public Movie findById(String id) {
-        return movieRepository.findById(id).orElseThrow(() -> new NotFoundException(Movie.class.getSimpleName()));
+    public MovieResponse findById(String id) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new NotFoundException(Movie.class.getSimpleName()));
+        return movieMapper.toResponses(movie);
     }
 
     @Override
@@ -50,8 +53,10 @@ public class MovieServiceImpl implements MovieService {
                 , moviesFind.getTotalPages()
                 , (int) moviesFind.getTotalElements()
                 , (int) moviesFind.getNumberOfElements()
-                , movieMapper.toResponses(moviesFind.toList()));
-
+                , moviesFind.toList()
+                            .stream()
+                            .map(movie -> movieMapper.toResponses(movie))
+                            .collect(Collectors.toList()));
         return moviePage;
     }
 

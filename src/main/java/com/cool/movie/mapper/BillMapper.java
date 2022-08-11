@@ -1,6 +1,6 @@
 package com.cool.movie.mapper;
 
-import com.cool.movie.dto.BillResponse;
+import com.cool.movie.dto.bill.BillResponse;
 import com.cool.movie.entity.Bill;
 import org.springframework.stereotype.Component;
 

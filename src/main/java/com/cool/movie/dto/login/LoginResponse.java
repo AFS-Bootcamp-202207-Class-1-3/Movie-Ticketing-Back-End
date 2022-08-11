@@ -1,4 +1,4 @@
-package com.cool.movie.dto;
+package com.cool.movie.dto.login;
 
 import lombok.Data;
 

@@ -1,13 +1,15 @@
 package com.cool.movie.controller;
-
-
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderForPairRequest;
+import com.cool.movie.dto.order.OrderListResponse;
+import com.cool.movie.dto.order.OrderRequest;
+import com.cool.movie.dto.order.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.persistence.NonUniqueResultException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -33,29 +35,27 @@ public class OrderController {
 
 
     @PostMapping
-    public CustomerOrder insert(@RequestBody OrderRequest request) {
+    public CustomerOrder insert(@RequestBody OrderForPairRequest request) {
         return orderService.save(request);
     }
 
 
-    @PutMapping
-    public void update(@RequestBody CustomerOrder customerOrder) {
-
+    @PutMapping("{customerOrderId}")
+    public CustomerOrder update(@PathVariable String customerOrderId) {
+        return orderService.updateHasPay(customerOrderId);
     }
 
     @PostMapping("/viewingTime")
-    public String isExistSameViewingTime(@RequestBody OrderRequest orderRequest){
-        CustomerOrder sameViewingTime = orderService.getSameViewingTime(orderRequest);
-        CustomerOrder saveCustomerOrder = new CustomerOrder();
-        saveCustomerOrder.setCinemaId(orderRequest.getCinemaId());
-        saveCustomerOrder.setMovieScheduleId(orderRequest.getMovieScheduleId());
-        saveCustomerOrder.setUserId(orderRequest.getUserId());
-        saveCustomerOrder.setMovieId(orderRequest.getMovieId());
-        if (sameViewingTime==null||sameViewingTime.equals("")){
-            CustomerOrder save = orderService.save(saveCustomerOrder);
-            return save.getId();
-        }else{
-            return sameViewingTime.getId();
+    public Boolean isExistSameViewingTime(@RequestBody OrderForPairRequest request){
+        CustomerOrder sameViewingTime = orderService.getSameViewingTime(request);
+        try{
+            if (sameViewingTime==null||sameViewingTime.equals("")){
+                return false;
+            }else{
+                return true;
+            }
+        }catch (NonUniqueResultException e){
+            return true;
         }
     }
 
@@ -63,5 +63,13 @@ public class OrderController {
     public void delete(@RequestParam("idList") List<Long> idList) {
 
     }
+
+    @GetMapping(value = "/getOrderList", params = {"pageSize", "pageNumber", "userId"})
+    public OrderPage selectByPage(@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "5", required = false) Integer pageNumber
+            , @RequestParam(value = "userId") String userId) {
+        return orderService.findSingleByPage(pageSize, pageNumber, userId);
+    }
+
 }
 

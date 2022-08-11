@@ -1,23 +1,30 @@
 package com.cool.movie.service.impl;
 
 
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderRequest;
-import com.cool.movie.entity.*;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderForPairRequest;
+import com.cool.movie.dto.order.OrderListResponse;
+import com.cool.movie.dto.order.OrderPage;
+import com.cool.movie.entity.CustomerOrder;
+import com.cool.movie.entity.MovieSchedule;
+import com.cool.movie.entity.OrderDetail;
+import com.cool.movie.entity.Pair;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.OrderDetailMapper;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
 import com.cool.movie.service.MovieScheduleService;
-import com.cool.movie.service.MovieService;
 import com.cool.movie.service.OrderService;
-import com.cool.movie.service.UserService;
-import com.cool.movie.mapper.OrderDetailMapper;
+import com.cool.movie.service.PairService;
+import com.cool.movie.utils.GenerateSeatingUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -33,7 +40,11 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderRepository orderRepository;
 
+    @Resource
+    private PairService pairService;
 
+    @Resource
+    private MovieScheduleService movieScheduleService;
 
     @Resource
     private OrderDetailViewRepository orderDetailViewRepository;
@@ -72,30 +83,32 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param request
      */
+    //查MovieSchedule的price
     @Override
-    public CustomerOrder save(OrderRequest request) {
-        CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
-                Math.random() * 100, request.getCinemaId(),false, request.getMovieScheduleId(), false,
-                generateRandomTicketCode(15), request.getUserId());
+    public CustomerOrder save(OrderForPairRequest request) {
+        MovieSchedule movieSchedule = movieScheduleService.findById(request.getMovieId());
+        List<String> seatingList = GenerateSeatingUtils.generateSeating(movieSchedule.getCapacity(), movieSchedule.getAvailablePosition());
+        movieSchedule.setAvailablePosition(movieSchedule.getAvailablePosition() - 2);
+        CustomerOrder order = createOrder(request, movieSchedule, seatingList);
+        CustomerOrder pairOrder = createPairOrder(request, movieSchedule, seatingList);
+
+        List<String> pairIds = savePair(request);
+        order.setPairId(pairIds.get(0));
+        pairOrder.setPairId(pairIds.get(1));
+        orderRepository.save(pairOrder);
         return orderRepository.save(order);
     }
 
-    @Override
-    public CustomerOrder save(CustomerOrder customerOrder) {
-        CustomerOrder order = new CustomerOrder(UUID.randomUUID().toString(), customerOrder.getMovieId(),
-                Math.random() * 100, customerOrder.getCinemaId(),false, customerOrder.getMovieScheduleId(), false,
-                generateRandomTicketCode(15), customerOrder.getUserId());
-        return orderRepository.save(order);
+    private CustomerOrder createPairOrder(OrderForPairRequest request, MovieSchedule movieSchedule, List<String> seatingList) {
+        return new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
+                movieSchedule.getPrice(), request.getCinemaId(),false, request.getMovieScheduleId(), false,
+                generateRandomTicketCode(), request.getPartnerId(), seatingList.get(1));
     }
 
-    /**
-     * save
-     *
-     * @param customerOrders
-     */
-    @Override
-    public List<CustomerOrder> save(List<CustomerOrder> customerOrders) {
-        return null;
+    private CustomerOrder createOrder(OrderForPairRequest request, MovieSchedule movieSchedule, List<String> seatingList) {
+        return new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
+                movieSchedule.getPrice(), request.getCinemaId(),false, request.getMovieScheduleId(), false,
+                generateRandomTicketCode(), request.getUserId(), seatingList.get(0));
     }
 
 
@@ -149,19 +162,44 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public CustomerOrder getSameViewingTime(OrderRequest orderRequest) {
-        return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(orderRequest.getMovieScheduleId(),orderRequest.getCinemaId(),orderRequest.getUserId());
+    public CustomerOrder getSameViewingTime(OrderForPairRequest request) {
+        return orderRepository.getCustomerOrderByMovieScheduleIdAndCinemaIdAndUserId(request.getMovieScheduleId(),request.getCinemaId(),request.getUserId());
     }
 
-    private String generateRandomTicketCode(int length) {
-        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random = new Random();
-        StringBuilder ticketCodeStringBuffer = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            int number = random.nextInt(62);
-            ticketCodeStringBuffer.append(str.charAt(number));
-        }
-        return ticketCodeStringBuffer.toString();
+    private String generateRandomTicketCode() {
+        return UUID.randomUUID().toString();
+    }
+
+    private List<String> savePair(OrderForPairRequest request) {
+        Pair pairA = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
+                request.getMovieScheduleId()));
+        Pair pairB = pairService.save(new Pair(UUID.randomUUID().toString(), request.getPartnerId(), request.getUserId(),
+                request.getMovieScheduleId()));
+        return Arrays.asList(pairA.getId(), pairB.getId());
+    }
+
+    @Override
+    public OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        Page<OrderListResponse> singlePartnerByPage = orderRepository.getOrderByUserIdAndByPage(userId, pageRequest);
+        return new OrderPage(
+                pageSize
+                ,pageNumber
+                ,singlePartnerByPage.getTotalPages()
+                ,(int)singlePartnerByPage.getTotalElements()
+                ,singlePartnerByPage.getNumberOfElements()
+                ,singlePartnerByPage.toList()
+        );
+    }
+
+    @Override
+    public CustomerOrder updateHasPay(String customerOrderId){
+        CustomerOrder customerOrder = orderRepository
+                .findById(customerOrderId)
+                .orElseThrow(()->new NotFoundException(CustomerOrder.class.getSimpleName()));
+        customerOrder.setIsPay(true);
+        orderRepository.save(customerOrder);
+        return customerOrder;
     }
 }
 

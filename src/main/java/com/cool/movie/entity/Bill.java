@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="bill")
+@Entity(name="bill_view")
 @Data
 public class Bill {
     @Id
@@ -32,4 +32,20 @@ public class Bill {
     @Column(columnDefinition = "partner_telephone")
     private String partnerTelephone;
 
+    public Bill() {
+    }
+
+    public Bill(String id, String movieName, String ticketCode, String cinemaName, String movieSchedule, String room, String seating, Double price, String partnerName, String partnerGender, String partnerTelephone) {
+        this.id = id;
+        this.movieName = movieName;
+        this.ticketCode = ticketCode;
+        this.cinemaName = cinemaName;
+        this.movieSchedule = movieSchedule;
+        this.room = room;
+        this.seating = seating;
+        this.price = price;
+        this.partnerName = partnerName;
+        this.partnerGender = partnerGender;
+        this.partnerTelephone = partnerTelephone;
+    }
 }

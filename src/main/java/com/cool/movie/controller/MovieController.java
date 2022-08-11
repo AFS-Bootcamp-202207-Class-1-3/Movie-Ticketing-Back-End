@@ -1,7 +1,8 @@
 package com.cool.movie.controller;
 
 
-import com.cool.movie.dto.moviedto.MoviePage;
+import com.cool.movie.dto.movie.MoviePage;
+import com.cool.movie.dto.movie.MovieResponse;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.service.MovieService;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +25,13 @@ public class MovieController {
 
 
     @GetMapping("{id}")
-    public Movie selectOne(@PathVariable String id) {
+    public MovieResponse selectOne(@PathVariable String id) {
         return movieService.findById(id);
     }
 
     @GetMapping(params = {"pageSize", "pageNumber"})
-    public MoviePage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize
-            , @RequestParam(value = "pageNumber", defaultValue = "6") Integer pageNumber) {
+    public MoviePage selectByPage(@RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
+            , @RequestParam(value = "pageNumber", defaultValue = "6", required = false) Integer pageNumber) {
         return movieService.findByPage(pageSize, pageNumber);
     }
 

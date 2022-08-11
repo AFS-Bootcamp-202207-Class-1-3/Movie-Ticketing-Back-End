@@ -1,8 +1,10 @@
 package com.cool.movie.service;
 
 
-import com.cool.movie.dto.OrderDetailResponse;
-import com.cool.movie.dto.OrderRequest;
+import com.cool.movie.dto.order.OrderDetailResponse;
+import com.cool.movie.dto.order.OrderForPairRequest;
+import com.cool.movie.dto.order.OrderRequest;
+import com.cool.movie.dto.order.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 
 import java.io.Serializable;
@@ -31,21 +33,7 @@ public interface OrderService {
      *
      * @param orderRequest
      */
-    CustomerOrder save(OrderRequest orderRequest);
-
-    /**
-     * save one
-     *
-     * @param customerOrder
-     */
-    CustomerOrder save(CustomerOrder customerOrder);
-
-    /**
-     * save
-     *
-     * @param customerOrders
-     */
-    List<CustomerOrder> save(List<CustomerOrder> customerOrders);
+    CustomerOrder save(OrderForPairRequest orderRequest);
 
     /**
      * deleteById
@@ -79,6 +67,10 @@ public interface OrderService {
      */
     long count();
 
-    CustomerOrder getSameViewingTime(OrderRequest orderRequest);
+    CustomerOrder getSameViewingTime(OrderForPairRequest orderRequest);
+
+    OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId);
+
+    CustomerOrder updateHasPay(String customerOrderId);
 }
 
