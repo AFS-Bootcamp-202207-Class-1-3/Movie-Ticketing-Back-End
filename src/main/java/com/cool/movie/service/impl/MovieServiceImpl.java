@@ -146,7 +146,21 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieWithMessagePage searchByMessage(Integer pageSize, Integer pageNumber, String searchMessage) {
         String searchSql = getSql(searchMessage);
-        return movieRepository.MovieWithMessagePage(pageSize, pageNumber, searchSql);
+        String countSql=getCountSql(searchMessage);
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        Page<Movie> movies = movieRepository.movieWithMessagePage(searchSql,countSql, pageRequest);
+        MovieWithMessagePage movieWithMessagePage = new MovieWithMessagePage(
+                pageSize,
+                pageNumber,
+                movies.getTotalPages(),
+                (int) movies.getTotalElements(),
+                movies.getNumberOfElements(),
+                movies.toList()
+                        .stream().map(movie -> movieMapper.toResponses(movie))
+                        .collect(Collectors.toList()),
+                searchMessage
+        );
+        return movieWithMessagePage;
     }
 
     private String getSql(String searchMessage) {
@@ -164,5 +178,23 @@ public class MovieServiceImpl implements MovieService {
         }
         return sql + ";";
     }
+
+    private String getCountSql(String searchMessage) {
+        String sql = "select count(*) from movie where ";
+        if (searchMessage == null || searchMessage.length() == 0) {
+            return sql + "1=2;";
+        }
+        String[] conditions = searchMessage.split(REGEX);
+
+        for (int i = 0; i < conditions.length; i++) {
+            sql += "name like %" + conditions[i] + "%";
+            if (i != conditions.length - 1) {
+                sql += " or ";
+            }
+        }
+        return sql + ";";
+    }
+
+
 }
 
