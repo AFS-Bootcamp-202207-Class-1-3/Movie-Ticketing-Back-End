@@ -3,6 +3,7 @@ package com.cool.movie.service;
 
 import com.cool.movie.dto.movie.MoviePage;
 import com.cool.movie.dto.movie.MovieResponse;
+import com.cool.movie.dto.movie.MovieWithMessagePage;
 import com.cool.movie.entity.Movie;
 
 import java.util.List;
@@ -71,5 +72,7 @@ public interface MovieService {
      * count
      */
     long count();
+
+    MovieWithMessagePage searchByMessage(Integer pageSize, Integer pageNumber, String searchMessage);
 }
 

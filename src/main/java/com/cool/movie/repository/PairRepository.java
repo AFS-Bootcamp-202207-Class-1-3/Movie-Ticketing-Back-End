@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PairRepository extends JpaRepository<Pair, String> {
     Pair findByUserId(String userId);
+
+    Pair findByUserIdAndMovieScheduleId(String userId,String movieScheduleId);
 }
 

@@ -69,7 +69,7 @@ public interface OrderService {
 
     CustomerOrder getSameViewingTime(OrderForPairRequest orderRequest);
 
-    OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId);
+    OrderPage findOrderByPage(Integer pageSize, Integer pageNumber, String userId);
 
     CustomerOrder updateHasPay(String customerOrderId);
 }
