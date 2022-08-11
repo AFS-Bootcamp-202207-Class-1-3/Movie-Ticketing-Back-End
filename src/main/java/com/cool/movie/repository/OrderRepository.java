@@ -28,9 +28,9 @@ public interface OrderRepository extends JpaRepository<CustomerOrder, String> {
     @Query(value = "select co.id,m.name,ms.start_time as starttime,co.price,co.is_pay as ispay" +
             " from customer_order as co " +
             "join movie as m on co.movie_id = m.id " +
-            "join movie_schedule ms on ms.movie_id = m.id " +
+            "join movie_schedule ms on ms.id = co.movie_schedule_id " +
             "where co.user_id = ?1 " +
-            "order by co.is_pay , ms.start_time desc ", countQuery ="select count(*) from customer_order as co join movie as m on co.movie_id = m.id join movie_schedule ms on ms.movie_id = m.id where co.user_id = ?1 ", nativeQuery = true)
+            "order by co.is_pay , ms.start_time desc ", countQuery ="select count(*) from customer_order as co join movie as m on co.movie_id = m.id join movie_schedule ms on ms.id = co.movie_schedule_id where co.user_id = ?1 ", nativeQuery = true)
     Page<OrderListResponse> getOrderByUserIdAndByPage(String userId, Pageable pageable);
 
 }
