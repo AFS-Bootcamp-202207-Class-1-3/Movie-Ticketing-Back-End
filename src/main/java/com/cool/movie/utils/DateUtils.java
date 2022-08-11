@@ -18,7 +18,7 @@ public class DateUtils {
         if (date == null) {
             return "";
         }
-        return dateFormat(date, "YYYY/MM/dd hh:mm");
+        return dateFormat(date, "YYYY/MM/dd");
     }
 
     public static String dateFormatForTimeStamp(Timestamp timestamp) {

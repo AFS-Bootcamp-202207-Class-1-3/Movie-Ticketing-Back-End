@@ -184,7 +184,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId) {
+    public OrderPage findOrderByPage(Integer pageSize, Integer pageNumber, String userId) {
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
         Page<OrderListResponse> singlePartnerByPage = orderRepository.getOrderByUserIdAndByPage(userId, pageRequest);
         return new OrderPage(
