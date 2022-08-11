@@ -71,5 +71,6 @@ public interface OrderService {
 
     OrderPage findSingleByPage(Integer pageSize, Integer pageNumber, String userId);
 
+    CustomerOrder updateHasPay(String customerOrderId);
 }
 

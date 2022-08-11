@@ -40,9 +40,9 @@ public class OrderController {
     }
 
 
-    @PutMapping
-    public void update(@RequestBody CustomerOrder customerOrder) {
-
+    @PutMapping("{customerOrderId}")
+    public CustomerOrder update(@PathVariable String customerOrderId) {
+        return orderService.updateHasPay(customerOrderId);
     }
 
     @PostMapping("/viewingTime")

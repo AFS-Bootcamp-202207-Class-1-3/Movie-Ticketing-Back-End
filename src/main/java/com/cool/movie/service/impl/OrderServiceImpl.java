@@ -1,26 +1,27 @@
 package com.cool.movie.service.impl;
 
 
-import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.dto.order.OrderForPairRequest;
-import com.cool.movie.dto.order.OrderRequest;
+import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderPage;
 import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.OrderDetailMapper;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
+import com.cool.movie.repository.PayRepository;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.OrderService;
-import com.cool.movie.mapper.OrderDetailMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import com.cool.movie.service.PairService;
 import com.cool.movie.utils.GenerateSeatingUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     private OrderDetailViewRepository orderDetailViewRepository;
+    @Resource
+    private PayRepository payRepository;
 
     @Resource
     OrderDetailMapper orderDetailMapper;
@@ -88,8 +91,11 @@ public class OrderServiceImpl implements OrderService {
         movieSchedule.setAvailablePosition(movieSchedule.getAvailablePosition() - 2);
         CustomerOrder order = createOrder(request, movieSchedule, seatingList);
         CustomerOrder pairOrder = createPairOrder(request, movieSchedule, seatingList);
-
-        savePair(request);
+        payRepository.save(new Pay(UUID.randomUUID().toString(), order.getId(), order.getPrice(), 0));
+        payRepository.save(new Pay(UUID.randomUUID().toString(), pairOrder.getId(), pairOrder.getPrice(), 0));
+        List<String> pairIds = savePair(request);
+        order.setPairId(pairIds.get(0));
+        pairOrder.setPairId(pairIds.get(1));
         orderRepository.save(pairOrder);
         return orderRepository.save(order);
     }
@@ -165,11 +171,12 @@ public class OrderServiceImpl implements OrderService {
         return UUID.randomUUID().toString();
     }
 
-    private void savePair(OrderForPairRequest request) {
-        pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
+    private List<String> savePair(OrderForPairRequest request) {
+        Pair pairA = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
                 request.getMovieScheduleId()));
-        pairService.save(new Pair(UUID.randomUUID().toString(), request.getPartnerId(), request.getUserId(),
+        Pair pairB = pairService.save(new Pair(UUID.randomUUID().toString(), request.getPartnerId(), request.getUserId(),
                 request.getMovieScheduleId()));
+        return Arrays.asList(pairA.getId(), pairB.getId());
     }
 
     @Override
@@ -184,6 +191,19 @@ public class OrderServiceImpl implements OrderService {
                 ,singlePartnerByPage.getNumberOfElements()
                 ,singlePartnerByPage.toList()
         );
+    }
+
+    @Override
+    public CustomerOrder updateHasPay(String customerOrderId){
+        CustomerOrder customerOrder = orderRepository
+                .findById(customerOrderId)
+                .orElseThrow(()->new NotFoundException(CustomerOrder.class.getSimpleName()));
+        customerOrder.setIsPay(true);
+        orderRepository.save(customerOrder);
+        Pay pay = payRepository.findByOrdersIds(customerOrderId);
+        pay.setStatus(1);
+        payRepository.save(pay);
+        return customerOrder;
     }
 }
 
