@@ -12,5 +12,6 @@ public class CustomerPair {
     private String avatarUrl;
     private String nickName;
     private String introduction;
+    //1: 未发起匹配; 2: 已发起匹配但未匹配成功 3:匹配成功
     private Integer status;
 }
