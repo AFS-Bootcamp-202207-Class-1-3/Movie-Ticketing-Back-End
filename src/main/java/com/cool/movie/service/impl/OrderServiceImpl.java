@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -91,7 +92,9 @@ public class OrderServiceImpl implements OrderService {
         CustomerOrder order = createOrder(request, movieSchedule, seatingList);
         CustomerOrder pairOrder = createPairOrder(request, movieSchedule, seatingList);
 
-        savePair(request);
+        List<String> pairIds = savePair(request);
+        order.setPairId(pairIds.get(0));
+        pairOrder.setPairId(pairIds.get(1));
         orderRepository.save(pairOrder);
         return orderRepository.save(order);
     }
@@ -167,11 +170,12 @@ public class OrderServiceImpl implements OrderService {
         return UUID.randomUUID().toString();
     }
 
-    private void savePair(OrderForPairRequest request) {
-        pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
+    private List<String> savePair(OrderForPairRequest request) {
+        Pair pairA = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
                 request.getMovieScheduleId()));
-        pairService.save(new Pair(UUID.randomUUID().toString(), request.getPartnerId(), request.getUserId(),
+        Pair pairB = pairService.save(new Pair(UUID.randomUUID().toString(), request.getPartnerId(), request.getUserId(),
                 request.getMovieScheduleId()));
+        return Arrays.asList(pairA.getId(), pairB.getId());
     }
 
     @Override

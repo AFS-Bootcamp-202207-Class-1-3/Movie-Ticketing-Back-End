@@ -51,7 +51,9 @@ public class BillControllerTest {
         movieRepository.save(new Movie("movie-id","movie-name","movie-introduction",new Date(),120,"https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg","科幻"));
         movieScheduleRepository.save(new MovieSchedule("movieSchedule-id","cinema-id","movie-id",new Date(),50,50,100.0,"roomA"));
         pairRepository.save(new Pair("pair-id","userA-id","userB-id","movieSchedule-id"));
-        orderRepository.save(new CustomerOrder(testOrderId,"movie-id",100.0,"cinema-id",false,"movieSchedule-id",false,"123456","userA-id","1-1"));
+        CustomerOrder customerOrder = new CustomerOrder(testOrderId, "movie-id", 100.0, "cinema-id", false, "movieSchedule-id", false, "123456", "userA-id", "1-1");
+        customerOrder.setPairId("pair-id");
+        orderRepository.save(customerOrder);
         client.perform(MockMvcRequestBuilders.get("/bills/{id}", testOrderId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.ticketCode").value("123456"))
@@ -63,6 +65,13 @@ public class BillControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.partnerName").value("name-b"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.partnerGender").value("male"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.partnerTelephone").value("13249555112"));
-        // when  && then
+        // delete create data
+        userRepository.deleteById("userA-id");
+        userRepository.deleteById("userB-id");
+        cinemaRepository.deleteById("cinema-id");
+        movieRepository.deleteById("movie-id");
+        movieScheduleRepository.deleteById("movieSchedule-id");
+        pairRepository.deleteById("pair-id");
+        orderRepository.deleteById(testOrderId);
     }
 }
