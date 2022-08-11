@@ -28,8 +28,8 @@ public class UserControllerTest {
     @Test
     void should_return_success_response_when_call_post_login_api_given_right_login_password() throws Exception {
         //given
-        String requestString = new ObjectMapper().writeValueAsString(new LoginRequest("name-1", "123456"));
-        Customer customer = userRepository.findByRealName("name-1");
+        String requestString = new ObjectMapper().writeValueAsString(new LoginRequest("吴彦祖", "111111"));
+        Customer customer = userRepository.findByRealName("吴彦祖");
 
         //when & then
         client.perform(MockMvcRequestBuilders.post("/user/login")

@@ -71,8 +71,8 @@ public class OrderControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").value("5"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").value("1"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").value("2"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalOrders").value("10"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").value("66"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalOrders").value("330"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.ordersCount").value("5"));
     }
 
