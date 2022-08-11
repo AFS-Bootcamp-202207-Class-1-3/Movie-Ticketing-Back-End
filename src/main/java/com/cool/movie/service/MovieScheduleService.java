@@ -68,6 +68,6 @@ public interface MovieScheduleService {
      */
     long count();
 
-    List<MovieSchedule> findMovieSchedulesByCinemaId(String cinemaId);
+    List<MovieSchedule> getMovieSchedulesByCinemaIdAndMovieId(String cinemaId,String movieId);
 }
 

@@ -1,8 +1,12 @@
 package com.cool.movie.service.impl;
 
+import com.cool.movie.dto.customerdto.CustomerPair;
+import com.cool.movie.entity.Customer;
 import com.cool.movie.entity.Pair;
 import com.cool.movie.exception.NotFoundException;
+import com.cool.movie.mapper.PairMapper;
 import com.cool.movie.repository.PairRepository;
+import com.cool.movie.repository.UserRepository;
 import com.cool.movie.service.PairService;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,11 @@ public class PairServiceImpl implements PairService {
 
     @Resource
     private PairRepository pairRepository;
+
+    @Resource
+    private UserRepository userRepository;
+    @Resource
+    private PairMapper pairMapper;
 
     @Override
     public Pair findByUserId(String userId) {
@@ -117,5 +126,26 @@ public class PairServiceImpl implements PairService {
     public long count() {
         return pairRepository.count();
     }
+
+    @Override
+    public CustomerPair getUserPairStatus(String userId, String movieScheduleId) {
+        Pair pair = pairRepository.findByUserIdAndMovieScheduleId(userId, movieScheduleId);
+        Customer customer = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(Customer.class.getSimpleName()));
+        if (pair == null) {
+            return pairMapper.toResponse(customer, 1);
+        }
+        if (pair.getPartnerId()==null) {
+            return pairMapper.toResponse(customer, 2);
+        }
+        return pairMapper.toResponse(customer, 3);
+    }
+
+    @Override
+    public void updatePartner(String partnerPairId, String partnerId) {
+        Pair pair = pairRepository.findById(partnerPairId).orElseThrow(() -> new NotFoundException(Pair.class.getSimpleName()));
+        pair.setPartnerId(partnerId);
+        pairRepository.save(pair);
+    }
+
 }
 

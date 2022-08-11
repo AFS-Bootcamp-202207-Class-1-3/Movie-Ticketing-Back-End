@@ -1,8 +1,6 @@
 package com.cool.movie.controller;
 import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.dto.order.OrderForPairRequest;
-import com.cool.movie.dto.order.OrderListResponse;
-import com.cool.movie.dto.order.OrderRequest;
 import com.cool.movie.dto.order.OrderPage;
 import com.cool.movie.entity.CustomerOrder;
 import com.cool.movie.service.OrderService;
@@ -49,11 +47,7 @@ public class OrderController {
     public Boolean isExistSameViewingTime(@RequestBody OrderForPairRequest request){
         CustomerOrder sameViewingTime = orderService.getSameViewingTime(request);
         try{
-            if (sameViewingTime==null||sameViewingTime.equals("")){
-                return false;
-            }else{
-                return true;
-            }
+            return sameViewingTime != null && !sameViewingTime.equals("");
         }catch (NonUniqueResultException e){
             return true;
         }
@@ -68,7 +62,7 @@ public class OrderController {
     public OrderPage selectByPage(@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
             , @RequestParam(value = "pageNumber", defaultValue = "5", required = false) Integer pageNumber
             , @RequestParam(value = "userId") String userId) {
-        return orderService.findSingleByPage(pageSize, pageNumber, userId);
+        return orderService.findOrderByPage(pageSize, pageNumber, userId);
     }
 
 }

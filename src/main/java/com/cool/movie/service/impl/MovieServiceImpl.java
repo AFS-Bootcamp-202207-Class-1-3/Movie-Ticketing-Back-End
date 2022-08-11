@@ -2,6 +2,7 @@ package com.cool.movie.service.impl;
 
 import com.cool.movie.dto.movie.MoviePage;
 import com.cool.movie.dto.movie.MovieResponse;
+import com.cool.movie.dto.movie.MovieWithMessagePage;
 import com.cool.movie.entity.Movie;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.mapper.MovieMapper;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +34,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieMapper movieMapper;
+
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    private static final String REGEX = "\\s+";
 
     /**
      * findById
@@ -54,9 +63,9 @@ public class MovieServiceImpl implements MovieService {
                 , (int) moviesFind.getTotalElements()
                 , (int) moviesFind.getNumberOfElements()
                 , moviesFind.toList()
-                            .stream()
-                            .map(movie -> movieMapper.toResponses(movie))
-                            .collect(Collectors.toList()));
+                .stream()
+                .map(movie -> movieMapper.toResponses(movie))
+                .collect(Collectors.toList()));
         return moviePage;
     }
 
@@ -139,5 +148,70 @@ public class MovieServiceImpl implements MovieService {
     public long count() {
         return movieRepository.count();
     }
+
+    @Override
+    public MovieWithMessagePage searchByMessage(Integer pageSize, Integer pageNumber, String searchMessage) {
+        String searchSql = getSql(searchMessage);
+        String countSql=getCountSql(searchMessage);
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+//        Query query = entityManager.createNativeQuery(searchSql, Movie.class);
+//        List<Movie> resultList = query.getResultList();
+//        List<String> ids = resultList.stream().map(result -> {
+//            return result.getId();
+//        }).collect(Collectors.toList());
+
+        Page<Movie> movies = movieRepository.movieWithMessagePage(searchMessage, pageRequest);
+
+
+        MovieWithMessagePage movieWithMessagePage = new MovieWithMessagePage(
+                pageSize,
+                pageNumber,
+                movies.getTotalPages(),
+                (int) movies.getTotalElements(),
+                movies.getNumberOfElements(),
+                movies.toList()
+                        .stream().map(movie -> movieMapper.toResponses(movie))
+                        .collect(Collectors.toList()),
+                searchMessage
+        );
+
+        return movieWithMessagePage;
+    }
+
+
+
+    private String getSql(String searchMessage) {
+        String sql = "select * from movie where ";
+        if (searchMessage == null || searchMessage.length() == 0) {
+            return sql + "1=2";
+        }
+        String[] conditions = searchMessage.split(REGEX);
+
+        for (int i = 0; i < conditions.length; i++) {
+            sql += "name like '%" + conditions[i] + "%'";
+            if (i != conditions.length - 1) {
+                sql += " or ";
+            }
+        }
+        return sql;
+    }
+
+    private String getCountSql(String searchMessage) {
+        String sql = "select count(*) from movie where ";
+        if (searchMessage == null || searchMessage.length() == 0) {
+            return sql + "1=2";
+        }
+        String[] conditions = searchMessage.split(REGEX);
+
+        for (int i = 0; i < conditions.length; i++) {
+            sql += "name like '%" + conditions[i] + "%'";
+            if (i != conditions.length - 1) {
+                sql += " or ";
+            }
+        }
+        return sql;
+    }
+
+
 }
 
