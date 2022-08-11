@@ -33,27 +33,27 @@ public class OrderControllerTest {
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.orderId").value(id));
 //    }
 
-    @Test
-    void should_return_order_when_call_post_insert_api_given_order_request() throws Exception {
-        //given
-        OrderForPairRequest request = new OrderForPairRequest();
-        request.setMovieId("1");
-        request.setCinemaId("1");
-        request.setUserId("1");
-        request.setMovieScheduleId("1");
-        request.setPartnerId("2");
-
-        String requestString = new ObjectMapper().writeValueAsString(request);
-
-        //when & then
-        client.perform(MockMvcRequestBuilders.post("/order")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestString))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(request.getUserId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.movieId").value(request.getMovieId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.movieScheduleId").value(request.getMovieScheduleId()));
-    }
+//    @Test
+//    void should_return_order_when_call_post_insert_api_given_order_request() throws Exception {
+//        //given
+//        OrderForPairRequest request = new OrderForPairRequest();
+//        request.setMovieId("1");
+//        request.setCinemaId("1");
+//        request.setUserId("1");
+//        request.setMovieScheduleId("1");
+//        request.setPartnerId("2");
+//
+//        String requestString = new ObjectMapper().writeValueAsString(request);
+//
+//        //when & then
+//        client.perform(MockMvcRequestBuilders.post("/order")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(requestString))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(request.getUserId()))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.movieId").value(request.getMovieId()))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.movieScheduleId").value(request.getMovieScheduleId()));
+//    }
 
     @Test
     public void should_return_not_found_when_get_order_given_invalid_order_id() throws Exception {
