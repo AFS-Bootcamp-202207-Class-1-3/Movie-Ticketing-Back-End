@@ -101,6 +101,8 @@ public class OrderServiceImpl implements OrderService {
         String pairId = succeedPair(request, partnerPairId);
         order.setPairId(pairId);
         pairOrder.setPairId(partnerPairId);
+        payRepository.save(new Pay(UUID.randomUUID().toString(),order.getId(),movieSchedule.getPrice(),0));
+        payRepository.save(new Pay(UUID.randomUUID().toString(),pairOrder.getId(),movieSchedule.getPrice(),0));
         orderRepository.save(pairOrder);
         return orderRepository.save(order);
     }
