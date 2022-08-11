@@ -35,6 +35,8 @@ public class CustomerOrder implements Serializable {
 
     private String seating;
 
+    private String pairId;
+
     public CustomerOrder(String id, String movieId, Double price, String cinemaId, Boolean isPay, String movieScheduleId,
                          Boolean hasUsed, String ticketCode, String userId, String seating) {
         this.id = id;

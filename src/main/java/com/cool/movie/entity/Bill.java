@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="bill")
+@Entity(name="bill_view")
 @Data
 public class Bill {
     @Id
