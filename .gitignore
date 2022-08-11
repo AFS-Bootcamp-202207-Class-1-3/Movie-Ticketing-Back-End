@@ -28,9 +28,5 @@
 docs/gradle-getting-started
 docs/tmp
 .vscode/
-<<<<<<< HEAD
 *.yml
-=======
 
-
->>>>>>> dev
