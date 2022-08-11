@@ -119,8 +119,8 @@ public class MovieScheduleServiceImpl implements MovieScheduleService {
      * @param cinemaId
      */
     @Override
-    public List<MovieSchedule> findMovieSchedulesByCinemaId(String cinemaId) {
-        return movieScheduleRepository.getMovieSchedulesByCinemaId(cinemaId);
+    public List<MovieSchedule> getMovieSchedulesByCinemaIdAndMovieId(String cinemaId,String movieId) {
+        return movieScheduleRepository.getMovieSchedulesByCinemaIdAndMovieId(cinemaId,movieId);
     }
 
 }

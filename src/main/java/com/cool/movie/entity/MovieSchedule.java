@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 
 @Entity
@@ -19,13 +19,13 @@ public class MovieSchedule implements Serializable {
     private String id;
     private String cinemaId;
     private String movieId;
-    private Date startTime;
+    private Timestamp startTime;
     private Integer capacity;
     private Integer availablePosition;
     private Double price;
     private String room;
 
-    public MovieSchedule(String id, String cinemaId, String movieId, Date startTime, Integer capacity, Integer availablePosition, Double price, String room) {
+    public MovieSchedule(String id, String cinemaId, String movieId, Timestamp startTime, Integer capacity, Integer availablePosition, Double price, String room) {
         this.id = id;
         this.cinemaId = cinemaId;
         this.movieId = movieId;

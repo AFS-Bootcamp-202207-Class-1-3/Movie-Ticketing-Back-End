@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -49,7 +50,7 @@ public class BillControllerTest {
         userRepository.save(new Customer("userB-id","name-b","nickname-b","https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",18,"male","13249555112","珠海","I am id-1", "111111"));
         cinemaRepository.save(new Cinema("cinema-id","cinema-name","cinema-location"));
         movieRepository.save(new Movie("movie-id","movie-name","movie-introduction",new Date(),120,"https://www.huanghelou.cc/zb_users/upload/2021/06/20210623184340_37163.jpg","科幻"));
-        movieScheduleRepository.save(new MovieSchedule("movieSchedule-id","cinema-id","movie-id",new Date(),50,50,100.0,"roomA"));
+        movieScheduleRepository.save(new MovieSchedule("movieSchedule-id","cinema-id","movie-id",new Timestamp(22),50,50,100.0,"roomA"));
         pairRepository.save(new Pair("pair-id","userA-id","userB-id","movieSchedule-id"));
         CustomerOrder customerOrder = new CustomerOrder(testOrderId, "movie-id", 100.0, "cinema-id", false, "movieSchedule-id", false, "123456", "userA-id", "1-1");
         customerOrder.setPairId("pair-id");
