@@ -63,38 +63,38 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("fail"));
     }
 
-    @Test
-    void should_return_single_partner_by_page_when_get_given_userId_movieScheduleId_pageSize_pageNumber()throws Exception{
-
-        // given
-        int pageSize=4;
-        int pageNumber=1;
-        int userId=1;
-        int movieScheduleId=1;
-
-        int exceptPageSize=pageSize;
-        int exceptPageNumber=pageNumber;
-        int exceptTotalPages=3;
-        int exceptTotalCustomers=9;
-        int exceptCustomersCount=4;
-
-        // then
-        client.perform(MockMvcRequestBuilders.get("/user?pageSize={pageSize}&pageNumber={pageNumber}" +
-                        "&userId={userId}&movieScheduleId={movieScheduleId}", pageSize, pageNumber,userId,movieScheduleId))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").value(exceptPageSize))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").value(exceptPageNumber))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").value(exceptTotalPages))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalCustomers").value(exceptTotalCustomers))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerCount").value(exceptCustomersCount))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].id").value("2"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].realName").value("name-2"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].nickName").value("nickname-2"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].avatarUrl").value("https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].age").value("18"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[1].gender").value("male"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].phoneNumber").value("13249555111"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[1].city").value("珠海"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[1].introduction").value("I am id-3"));
-    }
+//    @Test
+//    void should_return_single_partner_by_page_when_get_given_userId_movieScheduleId_pageSize_pageNumber()throws Exception{
+//
+//        // given
+//        int pageSize=4;
+//        int pageNumber=1;
+//        int userId=1;
+//        int movieScheduleId=1;
+//
+//        int exceptPageSize=pageSize;
+//        int exceptPageNumber=pageNumber;
+//        int exceptTotalPages=3;
+//        int exceptTotalCustomers=9;
+//        int exceptCustomersCount=4;
+//
+//        // then
+//        client.perform(MockMvcRequestBuilders.get("/user?pageSize={pageSize}&pageNumber={pageNumber}" +
+//                        "&userId={userId}&movieScheduleId={movieScheduleId}", pageSize, pageNumber,userId,movieScheduleId))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").value(exceptPageSize))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").value(exceptPageNumber))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").value(3))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.totalCustomers").value(exceptTotalCustomers))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerCount").value(exceptCustomersCount))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].id").value("2"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].realName").value("name-2"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].nickName").value("nickname-2"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].avatarUrl").value("https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].age").value("18"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[1].gender").value("male"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[0].phoneNumber").value("13249555111"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[1].city").value("珠海"))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.customerResponses[1].introduction").value("I am id-3"));
+//    }
 }
