@@ -13,6 +13,7 @@ import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.mapper.OrderDetailMapper;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
+import com.cool.movie.repository.PairRepository;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.service.PairService;
@@ -52,6 +53,9 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     OrderDetailMapper orderDetailMapper;
 
+    @Resource
+    PairRepository pairRepository;
+
 
     public OrderDetailResponse getOrderDetailResponse(Serializable id) {
         OrderDetail orderDetail = orderDetailViewRepository.findById(String.valueOf(id)).orElseThrow(() -> new NotFoundException(OrderDetail.class.getSimpleName()));
@@ -86,15 +90,17 @@ public class OrderServiceImpl implements OrderService {
     //查MovieSchedule的price
     @Override
     public CustomerOrder save(OrderForPairRequest request) {
-        MovieSchedule movieSchedule = movieScheduleService.findById(request.getMovieId());
+        MovieSchedule movieSchedule = movieScheduleService.findById(request.getMovieScheduleId());
         List<String> seatingList = GenerateSeatingUtils.generateSeating(movieSchedule.getCapacity(), movieSchedule.getAvailablePosition());
         movieSchedule.setAvailablePosition(movieSchedule.getAvailablePosition() - 2);
         CustomerOrder order = createOrder(request, movieSchedule, seatingList);
         CustomerOrder pairOrder = createPairOrder(request, movieSchedule, seatingList);
 
-        List<String> pairIds = savePair(request);
-        order.setPairId(pairIds.get(0));
-        pairOrder.setPairId(pairIds.get(1));
+        String partnerPairId=pairRepository.findByUserIdAndMovieScheduleId(request.getPartnerId(), request.getMovieScheduleId()).getId();
+
+        String pairId = succeedPair(request,partnerPairId);
+        order.setPairId(pairId);
+        pairOrder.setPairId(partnerPairId);
         orderRepository.save(pairOrder);
         return orderRepository.save(order);
     }
@@ -170,12 +176,11 @@ public class OrderServiceImpl implements OrderService {
         return UUID.randomUUID().toString();
     }
 
-    private List<String> savePair(OrderForPairRequest request) {
-        Pair pairA = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
+    private String succeedPair(OrderForPairRequest request,String partnerPairId) {
+        Pair pair = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
                 request.getMovieScheduleId()));
-        Pair pairB = pairService.save(new Pair(UUID.randomUUID().toString(), request.getPartnerId(), request.getUserId(),
-                request.getMovieScheduleId()));
-        return Arrays.asList(pairA.getId(), pairB.getId());
+        pairService.updatePartner(partnerPairId,request.getUserId());
+        return pair.getId();
     }
 
     @Override
