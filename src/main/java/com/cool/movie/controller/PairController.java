@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.websocket.server.PathParam;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -33,8 +34,9 @@ public class PairController {
 
 
     @PostMapping
-    public void insert(@RequestBody Pair pair) {
-
+    public Pair insert(@RequestBody Pair pair) {
+        return pairService.save(new Pair(UUID.randomUUID().toString(), pair.getUserId(), null,
+                pair.getMovieScheduleId()));
     }
 
 
