@@ -130,20 +130,19 @@ public class PairServiceImpl implements PairService {
     @Override
     public CustomerPair getUserPairStatus(String userId, String movieScheduleId) {
         Pair pair = pairRepository.findByUserIdAndMovieScheduleId(userId, movieScheduleId);
-        if (pair == null) {
-            return pairMapper.toResponse(new Customer(), 1);
-        }
-
         Customer customer = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(Customer.class.getSimpleName()));
-        if (pair.getPartnerId().isEmpty()) {
+        if (pair == null) {
+            return pairMapper.toResponse(customer, 1);
+        }
+        if (pair.getPartnerId()==null) {
             return pairMapper.toResponse(customer, 2);
         }
         return pairMapper.toResponse(customer, 3);
     }
 
     @Override
-    public void updatePartner(String partnerPairId,String partnerId) {
-        Pair pair=pairRepository.findById(partnerPairId).orElseThrow(()->new NotFoundException(Pair.class.getSimpleName()));
+    public void updatePartner(String partnerPairId, String partnerId) {
+        Pair pair = pairRepository.findById(partnerPairId).orElseThrow(() -> new NotFoundException(Pair.class.getSimpleName()));
         pair.setPartnerId(partnerId);
         pairRepository.save(pair);
     }
