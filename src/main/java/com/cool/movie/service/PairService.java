@@ -1,6 +1,7 @@
 package com.cool.movie.service;
 
 
+import com.cool.movie.dto.customerdto.CustomerPair;
 import com.cool.movie.entity.Pair;
 
 import java.util.List;
@@ -70,5 +71,9 @@ public interface PairService {
      * count
      */
     long count();
+
+    CustomerPair getUserPairStatus(String userId, String movieScheduleId);
+
+    void updatePartner(String partnerPairId, String partnerId);
 }
 
