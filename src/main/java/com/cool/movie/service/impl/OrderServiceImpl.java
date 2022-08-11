@@ -5,14 +5,12 @@ import com.cool.movie.dto.order.OrderDetailResponse;
 import com.cool.movie.dto.order.OrderForPairRequest;
 import com.cool.movie.dto.order.OrderListResponse;
 import com.cool.movie.dto.order.OrderPage;
-import com.cool.movie.entity.CustomerOrder;
-import com.cool.movie.entity.MovieSchedule;
-import com.cool.movie.entity.OrderDetail;
-import com.cool.movie.entity.Pair;
+import com.cool.movie.entity.*;
 import com.cool.movie.exception.NotFoundException;
 import com.cool.movie.mapper.OrderDetailMapper;
 import com.cool.movie.repository.OrderDetailViewRepository;
 import com.cool.movie.repository.OrderRepository;
+import com.cool.movie.repository.PayRepository;
 import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.service.PairService;
@@ -48,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     private OrderDetailViewRepository orderDetailViewRepository;
+    @Resource
+    private PayRepository payRepository;
 
     @Resource
     OrderDetailMapper orderDetailMapper;
@@ -91,7 +91,8 @@ public class OrderServiceImpl implements OrderService {
         movieSchedule.setAvailablePosition(movieSchedule.getAvailablePosition() - 2);
         CustomerOrder order = createOrder(request, movieSchedule, seatingList);
         CustomerOrder pairOrder = createPairOrder(request, movieSchedule, seatingList);
-
+        payRepository.save(new Pay(UUID.randomUUID().toString(), order.getId(), order.getPrice(), 0));
+        payRepository.save(new Pay(UUID.randomUUID().toString(), pairOrder.getId(), pairOrder.getPrice(), 0));
         List<String> pairIds = savePair(request);
         order.setPairId(pairIds.get(0));
         pairOrder.setPairId(pairIds.get(1));
@@ -199,6 +200,9 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(()->new NotFoundException(CustomerOrder.class.getSimpleName()));
         customerOrder.setIsPay(true);
         orderRepository.save(customerOrder);
+        Pay pay = payRepository.findByOrdersIds(customerOrderId);
+        pay.setStatus(1);
+        payRepository.save(pay);
         return customerOrder;
     }
 }
