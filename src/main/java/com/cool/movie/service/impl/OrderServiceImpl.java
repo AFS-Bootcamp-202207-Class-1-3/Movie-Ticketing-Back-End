@@ -15,6 +15,7 @@ import com.cool.movie.service.MovieScheduleService;
 import com.cool.movie.service.OrderService;
 import com.cool.movie.service.PairService;
 import com.cool.movie.utils.GenerateSeatingUtils;
+import com.cool.movie.utils.TimestampUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -101,13 +102,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private CustomerOrder createPairOrder(OrderForPairRequest request, MovieSchedule movieSchedule, List<String> seatingList) {
-        return new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
+        return new CustomerOrder(TimestampUtil.generateOrderNumber(), request.getMovieId(),
                 movieSchedule.getPrice(), request.getCinemaId(),false, request.getMovieScheduleId(), false,
                 generateRandomTicketCode(), request.getPartnerId(), seatingList.get(1));
     }
 
     private CustomerOrder createOrder(OrderForPairRequest request, MovieSchedule movieSchedule, List<String> seatingList) {
-        return new CustomerOrder(UUID.randomUUID().toString(), request.getMovieId(),
+        return new CustomerOrder(TimestampUtil.generateOrderNumber(), request.getMovieId(),
                 movieSchedule.getPrice(), request.getCinemaId(),false, request.getMovieScheduleId(), false,
                 generateRandomTicketCode(), request.getUserId(), seatingList.get(0));
     }

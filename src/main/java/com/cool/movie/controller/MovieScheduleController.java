@@ -4,7 +4,7 @@ package com.cool.movie.controller;
 import com.cool.movie.dto.movieschedule.MovieScheduleResponse;
 import com.cool.movie.entity.MovieSchedule;
 import com.cool.movie.service.MovieScheduleService;
-import com.cool.movie.utils.ViewTimeMapper;
+import com.cool.movie.mapper.ViewTimeMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

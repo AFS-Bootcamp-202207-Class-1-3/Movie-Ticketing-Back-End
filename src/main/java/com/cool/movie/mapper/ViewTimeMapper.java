@@ -1,7 +1,8 @@
-package com.cool.movie.utils;
+package com.cool.movie.mapper;
 
 import com.cool.movie.dto.movieschedule.MovieScheduleResponse;
 import com.cool.movie.entity.MovieSchedule;
+import com.cool.movie.utils.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class ViewTimeMapper {
         for (MovieSchedule movieSchedule : movieSchedules) {
             MovieScheduleResponse response = new MovieScheduleResponse();
             BeanUtils.copyProperties(movieSchedule, response);
-            response.setStartTime(movieSchedule.getStartTime().toString());
+            response.setStartTime(DateUtils.dateFormatForTimeStamp(movieSchedule.getStartTime()));
             responses.add(response);
         }
         return responses;
