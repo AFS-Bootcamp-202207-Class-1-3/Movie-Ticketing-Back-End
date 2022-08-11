@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MovieScheduleRepository extends JpaRepository<MovieSchedule, String> {
-    List<MovieSchedule> getMovieSchedulesByCinemaId(String cinemaId);
+    List<MovieSchedule> getMovieSchedulesByCinemaIdAndMovieId(String cinemaId,String movieId);
 }
 

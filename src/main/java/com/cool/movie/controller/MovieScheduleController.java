@@ -28,9 +28,9 @@ public class MovieScheduleController {
     }
 
     //按照电影院查找场次
-    @GetMapping("cinema/{CinemaId}")
-    public List<MovieScheduleResponse> selectAllByCinemaId(@PathVariable String CinemaId) {
-        return copyListMapper.copyListProperties(movieScheduleService.findMovieSchedulesByCinemaId(CinemaId),MovieScheduleResponse::new);
+    @GetMapping(params = {"cinemaId", "movieId"})
+    public List<MovieScheduleResponse> selectAllByCinemaIdAndMovieId(@RequestParam(value = "cinemaId") String cinemaId,@RequestParam(value = "movieId")  String movieId) {
+        return copyListMapper.copyListProperties(movieScheduleService.getMovieSchedulesByCinemaIdAndMovieId(cinemaId,movieId),MovieScheduleResponse::new);
     }
 
     @PostMapping
