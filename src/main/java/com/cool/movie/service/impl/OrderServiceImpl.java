@@ -101,21 +101,21 @@ public class OrderServiceImpl implements OrderService {
         String pairId = succeedPair(request, partnerPairId);
         order.setPairId(pairId);
         pairOrder.setPairId(partnerPairId);
-        payRepository.save(new Pay(UUID.randomUUID().toString(),order.getId(),movieSchedule.getPrice(),0));
-        payRepository.save(new Pay(UUID.randomUUID().toString(),pairOrder.getId(),movieSchedule.getPrice(),0));
+        payRepository.save(new Pay(UUID.randomUUID().toString(), order.getId(), movieSchedule.getPrice(), 0));
+        payRepository.save(new Pay(UUID.randomUUID().toString(), pairOrder.getId(), movieSchedule.getPrice(), 0));
         orderRepository.save(pairOrder);
         return orderRepository.save(order);
     }
 
     private CustomerOrder createPairOrder(OrderForPairRequest request, MovieSchedule movieSchedule, List<String> seatingList) {
         return new CustomerOrder(TimestampUtil.generateOrderNumber(), request.getMovieId(),
-                movieSchedule.getPrice(), request.getCinemaId(),false, request.getMovieScheduleId(), false,
+                movieSchedule.getPrice(), request.getCinemaId(), false, request.getMovieScheduleId(), false,
                 generateRandomTicketCode(), request.getPartnerId(), seatingList.get(1));
     }
 
     private CustomerOrder createOrder(OrderForPairRequest request, MovieSchedule movieSchedule, List<String> seatingList) {
         return new CustomerOrder(TimestampUtil.generateOrderNumber(), request.getMovieId(),
-                movieSchedule.getPrice(), request.getCinemaId(),false, request.getMovieScheduleId(), false,
+                movieSchedule.getPrice(), request.getCinemaId(), false, request.getMovieScheduleId(), false,
                 generateRandomTicketCode(), request.getUserId(), seatingList.get(0));
     }
 
@@ -179,8 +179,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private String succeedPair(OrderForPairRequest request, String partnerPairId) {
-        Pair pair = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
-                request.getMovieScheduleId()));
+        Pair pair = pairRepository.findByUserIdAndMovieScheduleId(request.getUserId(), request.getMovieScheduleId());
+        if (pair == null) {
+            pair = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
+                    request.getMovieScheduleId()));
+        } else {
+            pair.setPartnerId(request.getPartnerId());
+            pairService.save(pair);
+        }
         pairService.updatePartner(partnerPairId, request.getUserId());
         return pair.getId();
     }
