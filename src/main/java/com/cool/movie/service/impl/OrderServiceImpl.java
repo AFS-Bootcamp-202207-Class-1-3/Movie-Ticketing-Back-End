@@ -179,8 +179,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private String succeedPair(OrderForPairRequest request, String partnerPairId) {
-        Pair pair = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
-                request.getMovieScheduleId()));
+        Pair pair = pairRepository.findByUserIdAndMovieScheduleId(request.getUserId(), request.getMovieScheduleId());
+        if (pair == null) {
+            pair = pairService.save(new Pair(UUID.randomUUID().toString(), request.getUserId(), request.getPartnerId(),
+                    request.getMovieScheduleId()));
+        } else {
+            pair.setPartnerId(request.getPartnerId());
+            pairService.save(pair);
+        }
         pairService.updatePartner(partnerPairId, request.getUserId());
         return pair.getId();
     }
